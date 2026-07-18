@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CinematicHero from '../components/CinematicHero.astro';
+import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Kritagya Kafle — Designer & Developer" description="Cinematic portfolio featuring interactive frame sequences and modern design.">
+  <!-- Unified Hero Section (700vh pinned) -->
+  <CinematicHero />
+  
+  <!-- Content flows seamlessly right after the pinned canvas fades out -->
+  <div class="content-flow">
+    <Projects />
+    <About />
+    <Contact />
+    <Footer />
+  </div>
+</BaseLayout>
+
+<script>
+  import { initScrollAnimations } from '../scripts/scroll-animations';
+  initScrollAnimations();
+</script>
+
+<style>
+  .content-flow {
+    position: relative;
+    z-index: 20;
+    /* Clean transition, no harsh lines or shadows since canvas faded out */
+    background-color: var(--bg);
+  }
+</style>

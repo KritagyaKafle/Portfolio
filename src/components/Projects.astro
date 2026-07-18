@@ -1,0 +1,106 @@
+---
+// src/components/Projects.astro
+const projects = [
+  { title: "Project Alpha", desc: "A cinematic landing page built with Astro and GSAP.", tech: ["Astro", "GSAP"] },
+  { title: "Project Beta", desc: "E-commerce interface focused on micro-interactions.", tech: ["React", "Framer Motion"] },
+  { title: "Project Gamma", desc: "Brand identity and web experience for a local studio.", tech: ["Figma", "Next.js"] },
+  { title: "Project Delta", desc: "Interactive data visualization dashboard.", tech: ["TypeScript", "D3.js"] }
+];
+---
+
+<section class="projects-section" id="projects">
+  <div class="container">
+    <div class="projects-grid">
+      {projects.map(p => (
+        <article class="project-card">
+          <div class="project-image-placeholder"></div>
+          <div class="project-info">
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <div class="tech-stack">
+              {p.tech.map(t => <span class="tech-pill">{t}</span>)}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    padding: 5vh 5% 10vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+
+  .project-card {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 12px 32px var(--shadow-dark);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .project-image-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: var(--border-subtle);
+  }
+
+  .project-info {
+    padding: 2rem;
+  }
+
+  .project-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .project-info p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-pill {
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

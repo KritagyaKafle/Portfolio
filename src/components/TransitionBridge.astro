@@ -1,0 +1,28 @@
+---
+// src/components/TransitionBridge.astro
+---
+
+<section class="transition-bridge">
+  <div class="bridge-content">
+    <h2>See what I've built.</h2>
+  </div>
+</section>
+
+<style>
+  .transition-bridge {
+    width: 100%;
+    padding: 15vh 0; 
+    /* Cohesive gray background inherits from .content-flow container in index.astro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bridge-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--text);
+  }
+</style>

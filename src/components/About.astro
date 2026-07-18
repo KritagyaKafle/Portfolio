@@ -1,0 +1,81 @@
+---
+// src/components/About.astro
+---
+
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          I am a graphic designer transitioning into frontend development. I believe that the best digital experiences are built at the intersection of aesthetic intent and technical precision.
+        </p>
+        <p>
+          Coming from a background in motion graphics and brand identity, I approach code not just as logic, but as a medium for interactive storytelling. Every animation, transition, and layout is a deliberate design choice.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="/me.jpeg" alt="Kritagya Kafle Portrait" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 15vh 5%;
+    background-color: var(--bg);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .about-text {
+    flex: 1;
+  }
+
+  .about-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .about-text p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-image {
+    flex: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    /* Wrap in subtle border/shadow */
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px var(--shadow-light);
+  }
+
+  .about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .about-content {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+  }
+</style>

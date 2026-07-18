@@ -1,0 +1,255 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+function getIcon(name: string) {
+  try { return fs.readFileSync(path.join(process.cwd(), 'src/assets/icons', `${name}.svg`), 'utf-8'); }
+  catch (e) { return ''; }
+}
+
+const graphicsSkills = [
+  { name: 'Photoshop', icon: 'photoshop' },
+  { name: 'Premiere Pro', icon: 'premiere-pro' },
+  { name: 'CapCut', icon: 'capcut' },
+  { name: 'Illustrator', icon: 'illustrator' },
+  { name: 'Canva', icon: 'canva' },
+  { name: 'After Effects', icon: 'after-effects' }
+];
+
+const devSkills = [
+  { name: 'Frontend Dev', icon: 'frontend' },
+  { name: 'Web Scraping', icon: 'web-scraping' },
+  { name: 'Automation', icon: 'automation' },
+  { name: 'React', icon: 'react' },
+  { name: 'TypeScript', icon: 'typescript' },
+  { name: 'GSAP', icon: 'gsap' }
+];
+---
+
+<section class="cinematic-master">
+  <div class="canvas-wrapper">
+    <canvas id="master-canvas"></canvas>
+    <div class="canvas-vignette"></div>
+  </div>
+
+  <div class="layer title-layer">
+    <div class="title-text-wrapper">
+      <h1 class="title-primary">
+        {'KRITAGYA KAFLE'.split('').map(char => (
+          <span class="char">{char === ' ' ? '\u00A0' : char}</span>
+        ))}
+      </h1>
+      <div class="title-ghost" aria-hidden="true">
+        {'KRITAGYA KAFLE'.split('').map(char => (
+          <span class="char">{char === ' ' ? '\u00A0' : char}</span>
+        ))}
+      </div>
+    </div>
+    <div class="subtitle-wrapper">
+      <h2 class="title-subtitle">
+        <span class="italic-accent">Graphics</span> Meets Development
+      </h2>
+    </div>
+  </div>
+
+  <div class="layer skills-layer">
+    <div class="skills-column graphics-column">
+      <div class="cards-cluster">
+        {graphicsSkills.map((skill, index) => (
+          <div class="skill-card graphics-card" style={`--curve: ${Math.sin((index / 5) * Math.PI)};`}>
+            <span class="icon" set:html={getIcon(skill.icon)} />
+            <span class="label">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <div class="skills-column dev-column">
+      <div class="cards-cluster">
+        {devSkills.map((skill, index) => (
+          <div class="skill-card dev-card" style={`--curve: ${Math.sin((index / 5) * Math.PI)};`}>
+            <span class="icon" set:html={getIcon(skill.icon)} />
+            <span class="label">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="layer bridge-layer">
+    <h2>See what I've built.</h2>
+  </div>
+</section>
+
+<style>
+  .cinematic-master {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+  }
+
+  .canvas-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+    background: var(--bg);
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    mix-blend-mode: luminosity; 
+    transition: opacity 0.5s ease;
+  }
+
+  .canvas-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, var(--bg) 95%);
+    pointer-events: none;
+  }
+
+  .layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+    perspective: 1200px;
+  }
+
+  .char {
+    display: inline-block;
+  }
+
+  /* --- Title Layer --- */
+  .title-text-wrapper { position: relative; z-index: 2; }
+  .title-primary {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: #fff;
+    mix-blend-mode: exclusion;
+    display: flex;
+  }
+  .title-ghost {
+    position: absolute;
+    top: 4px; left: -4px;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.2);
+    display: flex;
+  }
+  .subtitle-wrapper { margin-top: 1.5rem; overflow: hidden; z-index: 2; }
+  .title-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+  }
+  .italic-accent { font-style: italic; color: var(--peacock-teal); font-family: serif; font-size: 110%; }
+
+  /* Skills Layer layout spacing */
+  .skills-layer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10%; /* increased padding brings columns closer to center/face */
+    opacity: 1;
+  }
+
+  .skills-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 35%;
+    max-width: 320px;
+    pointer-events: auto;
+  }
+  .graphics-column { align-items: flex-start; }
+  .dev-column { align-items: flex-end; text-align: right; }
+
+  .cards-cluster { display: flex; flex-direction: column; gap: 14px; }
+  .graphics-column .cards-cluster { align-items: flex-start; }
+  .dev-column .cards-cluster { align-items: flex-end; }
+
+  /* PEACOCK SAMPLE STYLING */
+  .skill-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 24px 6px 6px;
+    background: #ffffff;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--peacock-teal); /* Use the requested teal color */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    
+    /* Make them visible immediately so user sees them! */
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    
+    /* Apply curve using CSS variable. 
+       Negative pushes middle boxes outward, positive pushes them closer to the face.
+       We use -40px so it's a subtle curve that doesn't push them too far. */
+    position: relative;
+  }
+  
+  .graphics-card { left: calc(var(--curve) * -30px); }
+  .dev-card { right: calc(var(--curve) * -30px); }
+
+  .skill-card .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #111111;
+    border-radius: 50%;
+  }
+
+  .skill-card :global(svg) { width: 20px; height: 20px; fill: #ffffff; color: #ffffff; }
+
+  /* Bridge Layer */
+  .bridge-layer { opacity: 0; }
+  .bridge-layer h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  @media (max-width: 768px) {
+    .skills-layer { flex-direction: column; justify-content: center; gap: 3rem; }
+    .skills-column { width: 100%; align-items: center; text-align: center; }
+    .graphics-column .cards-cluster, .dev-column .cards-cluster { align-items: center; }
+    /* Make them a straight line on mobile */
+    .graphics-card, .dev-card { left: 0; right: 0; }
+  }
+</style>
+
+<script>
+  import { initCinematicMaster } from '../scripts/cinematic-hero-v3';
+  initCinematicMaster();
+</script>

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #EBEBE9;
+  --bg-elevated: #F4F4F2;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-bg-hover: rgba(255, 255, 255, 0.95);
+  --border: #A1A19D;
+  --border-subtle: #C2C2BF;
+  
+  --text: rgb(11, 130, 138);
+  --text-secondary: #63635E;
+  --text-tertiary: #8C8C88;
+
+  --glow: rgba(0, 0, 0, 0.05);
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --peacock-teal: rgb(11, 130, 138);
+  --peacock-gold: #B8943D;
+  --peacock-violet: #7A5BA0;
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rough Grain + Pattern Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.35; /* Slightly stronger for the rough feel */
+  background-image: url("/textures/grain.svg"), radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 220px 220px, 8px 8px; /* Adds a subtle dot pattern behind the noise */
+  background-position: 0 0, 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay { animation: none !important; }
+}
+
+.char {
+  display: inline-block;
+}

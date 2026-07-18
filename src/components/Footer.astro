@@ -1,0 +1,39 @@
+---
+// src/components/Footer.astro
+---
+
+<footer>
+  <div class="container">
+    <p>&copy; {new Date().getFullYear()} Kritagya Kafle.</p>
+    <p>Built with Astro + GSAP.</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 2rem 5%;
+    background-color: var(--bg);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+  }
+</style>
