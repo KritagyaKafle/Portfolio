@@ -29,7 +29,7 @@ const projects = [
 
 <style>
   .projects-section {
-    padding: 5vh 5% 10vh;
+    padding: clamp(3.5rem, 8vh, 6rem) clamp(1rem, 5vw, 5%) clamp(4.5rem, 10vh, 8rem);
   }
 
   .container {
@@ -101,6 +101,15 @@ const projects = [
   @media (max-width: 768px) {
     .projects-grid {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
     }
+
+    .project-info { padding: 1.35rem; }
+  }
+
+  @media (max-width: 480px) {
+    .project-card { border-radius: 12px; }
+    .project-info h3 { font-size: 1.3rem; }
+    .project-info p { margin-bottom: 1.15rem; }
   }
 </style>

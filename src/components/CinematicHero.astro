@@ -85,7 +85,8 @@ const devSkills = [
   .cinematic-master {
     position: relative;
     width: 100%;
-    height: 100vh; 
+    height: 100vh;
+    height: 100svh;
   }
 
   .canvas-wrapper {
@@ -93,7 +94,7 @@ const devSkills = [
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     z-index: 1;
     background: var(--bg);
@@ -120,7 +121,7 @@ const devSkills = [
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -135,7 +136,11 @@ const devSkills = [
   }
 
   /* --- Title Layer --- */
-  .title-text-wrapper { position: relative; z-index: 2; }
+  .title-text-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: calc(100% - 2rem);
+  }
   .title-primary {
     font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 7.5rem);
@@ -145,6 +150,8 @@ const devSkills = [
     color: #fff;
     mix-blend-mode: exclusion;
     display: flex;
+    justify-content: center;
+    white-space: nowrap;
   }
   .title-ghost {
     position: absolute;
@@ -158,13 +165,25 @@ const devSkills = [
     -webkit-text-stroke: 1px rgba(0,0,0,0.2);
     display: flex;
   }
-  .subtitle-wrapper { margin-top: 1.5rem; overflow: hidden; z-index: 2; }
+  .subtitle-wrapper {
+    max-width: calc(100% - 2rem);
+    margin-top: 1.5rem;
+    overflow: hidden;
+    z-index: 2;
+    text-align: center;
+  }
   .title-subtitle {
+    display: inline-block;
     font-family: var(--font-display);
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: 500;
     letter-spacing: 0.1em;
     color: var(--text-secondary);
+    line-height: 1.35;
+    /* Keeps the moving title readable when it crosses the portrait's highlights. */
+    -webkit-text-stroke: 0.55px rgba(255, 255, 255, 0.9);
+    paint-order: stroke fill;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.24);
   }
   .italic-accent { font-style: italic; color: var(--peacock-teal); font-family: serif; font-size: 110%; }
 
@@ -204,6 +223,7 @@ const devSkills = [
     color: var(--peacock-teal); /* Use the requested teal color */
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     
     /* Make them visible immediately so user sees them! */
@@ -241,11 +261,65 @@ const devSkills = [
   }
 
   @media (max-width: 768px) {
-    .skills-layer { flex-direction: column; justify-content: center; gap: 3rem; }
-    .skills-column { width: 100%; align-items: center; text-align: center; }
-    .graphics-column .cards-cluster, .dev-column .cards-cluster { align-items: center; }
-    /* Make them a straight line on mobile */
+    .title-primary,
+    .title-ghost {
+      font-size: clamp(1.75rem, 9.2vw, 4.75rem);
+    }
+
+    .title-ghost { top: 3px; left: -3px; }
+
+    .title-subtitle {
+      font-size: clamp(0.75rem, 2.9vw, 1rem);
+      letter-spacing: 0.075em;
+    }
+
+    /* Keep the two disciplines in-frame rather than stacking twelve cards vertically. */
+    .skills-layer {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(0.75rem, 4vw, 2rem);
+      padding: 0 clamp(1rem, 4vw, 2rem);
+    }
+
+    .skills-column {
+      width: calc(50% - 0.375rem);
+      max-width: 240px;
+    }
+
+    .cards-cluster { gap: 10px; }
     .graphics-card, .dev-card { left: 0; right: 0; }
+  }
+
+  @media (max-width: 480px) {
+    .subtitle-wrapper { margin-top: 0.9rem; }
+
+    .skills-layer {
+      gap: 0.5rem;
+      padding: 0 0.75rem;
+    }
+
+    .cards-cluster { gap: 7px; }
+
+    .skill-card {
+      gap: 6px;
+      padding: 4px 9px 4px 4px;
+      font-size: clamp(0.58rem, 2.5vw, 0.72rem);
+      letter-spacing: 0.025em;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+    }
+
+    .skill-card .icon {
+      width: 27px;
+      height: 27px;
+    }
+
+    .skill-card :global(svg) { width: 14px; height: 14px; }
+  }
+
+  @media (max-width: 360px) {
+    .skills-layer { padding: 0 0.5rem; }
+    .skill-card { font-size: 0.55rem; padding-right: 7px; }
   }
 </style>
 

@@ -22,7 +22,7 @@
 
 <style>
   .contact-section {
-    padding: 15vh 5% 10vh;
+    padding: clamp(4.5rem, 12vh, 9rem) clamp(1rem, 5vw, 5%) clamp(4rem, 10vh, 7rem);
     background-color: var(--bg);
     text-align: center;
   }
@@ -49,7 +49,7 @@
   .email-link {
     display: inline-block;
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.15rem, 5.8vw, 2.5rem);
     font-weight: 500;
     color: var(--text);
     text-decoration: none;
@@ -57,6 +57,7 @@
     border-bottom: 2px solid var(--border);
     transition: color var(--transition-fast), border-color var(--transition-fast);
     margin-bottom: 4rem;
+    overflow-wrap: anywhere;
   }
 
   .email-link:hover {
@@ -78,5 +79,12 @@
   .social-links a:hover {
     color: var(--text);
     transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    h2 { font-size: clamp(2.2rem, 12vw, 3rem); }
+    p { font-size: 1rem; margin-bottom: 2rem; }
+    .email-link { margin-bottom: 2.75rem; }
+    .social-links { gap: 1.25rem; }
   }
 </style>

@@ -24,6 +24,8 @@
   --peacock-violet: #7A5BA0;
 
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.2s var(--ease-smooth);
+  --transition-medium: 0.4s var(--ease-smooth);
 }
 
 *, *::before, *::after {
@@ -38,6 +40,17 @@ body {
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg {
+  max-width: 100%;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--peacock-teal);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 /* Rough Grain + Pattern Overlay */
@@ -47,13 +60,20 @@ body {
   z-index: 999;
   pointer-events: none;
   mix-blend-mode: multiply;
-  opacity: 0.35; /* Slightly stronger for the rough feel */
+  opacity: 0.12;
   background-image: url("/textures/grain.svg"), radial-gradient(var(--border) 1px, transparent 1px);
   background-size: 220px 220px, 8px 8px; /* Adds a subtle dot pattern behind the noise */
   background-position: 0 0, 0 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
   .grain-overlay { animation: none !important; }
 }
 

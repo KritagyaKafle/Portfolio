@@ -12,6 +12,8 @@ export function initCinematicMaster() {
   const totalFrames = 122; 
   const currentFrame = { value: 0 };
   const images: HTMLImageElement[] = [];
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCompactViewport = window.matchMedia('(max-width: 768px)').matches;
 
   function resize() {
     canvas.width = window.innerWidth;
@@ -60,6 +62,7 @@ export function initCinematicMaster() {
           if (i === 0) renderFrame();
           resolve(img);
         };
+        img.onerror = () => resolve(img);
       });
     }
     for (let i = 20; i < totalFrames; i++) {
@@ -69,6 +72,9 @@ export function initCinematicMaster() {
     }
   }
   preloadFrames();
+
+  // Leave a stable, readable first scene for visitors who request less motion.
+  if (prefersReducedMotion) return;
 
   // Initial Load Text Animation - Creative 3D Pop Up
   gsap.fromTo('.title-primary .char', 
@@ -80,13 +86,13 @@ export function initCinematicMaster() {
       z: 0, 
       duration: 1.2, 
       stagger: 0.05, 
-      ease: 'back.out(1.7)',
+      ease: 'power4.out',
       transformOrigin: '50% 50% -50px'
     }
   );
   gsap.fromTo('.title-subtitle', 
     { opacity: 0, y: 30, scale: 0.8 }, 
-    { opacity: 1, y: 0, scale: 1, duration: 1, delay: 0.8, ease: 'back.out(1.2)' }
+    { opacity: 1, y: 0, scale: 1, duration: 1, delay: 0.8, ease: 'power3.out' }
   );
 
 
@@ -97,7 +103,7 @@ export function initCinematicMaster() {
       trigger: '.cinematic-master',
       pin: true, 
       start: 'top top',
-      end: '+=700%', // Creates 700vh of scroll duration
+      end: isCompactViewport ? '+=560%' : '+=700%',
       scrub: 0.5,
     }
   });
@@ -118,7 +124,7 @@ export function initCinematicMaster() {
     rotationY: -180,   // go round (3D flip to match a turn)
     rotationZ: -10,    // slight tilt
     opacity: 0,
-    ease: 'power1.inOut',
+    ease: 'none',
     duration: 0.4
   }, 0);
 
@@ -126,7 +132,7 @@ export function initCinematicMaster() {
   scrollTl.to(canvas, {
     opacity: 0.35, 
     duration: 0.2,
-    ease: 'power2.inOut'
+    ease: 'none'
   }, 0.35); // Happens as Hero_1 goes black and Hero_2 starts
 
   // 4. SEQUENTIAL POPUPS for Skills based on scroll progress & light position
@@ -138,7 +144,7 @@ export function initCinematicMaster() {
     y: 0,
     duration: 0.1,
     stagger: 0.015,
-    ease: 'back.out(1.5)'
+    ease: 'none'
   }, 0.45);
 
   // Left Side (Graphics) pops DOWN (disappears) as light moves away from left
@@ -148,7 +154,7 @@ export function initCinematicMaster() {
     y: -20,
     duration: 0.1,
     stagger: 0.01,
-    ease: 'power2.in'
+    ease: 'none'
   }, 0.58);
 
   // 4b. Right Side (Development) pops UP as the light shifts to the right side
@@ -158,7 +164,7 @@ export function initCinematicMaster() {
     y: 0,
     duration: 0.1,
     stagger: 0.015,
-    ease: 'back.out(1.5)'
+    ease: 'none'
   }, 0.65);
 
   // Right Side (Development) pops DOWN (disappears) as the sequence ends
@@ -168,20 +174,20 @@ export function initCinematicMaster() {
     y: -20,
     duration: 0.1,
     stagger: 0.01,
-    ease: 'power2.in'
+    ease: 'none'
   }, 0.80);
 
   // 5. Fade out Canvas & Fade in Bridge Layer
   scrollTl.to('.canvas-wrapper', {
     opacity: 0,
     duration: 0.1,
-    ease: 'power2.inOut'
+    ease: 'none'
   }, 0.85);
 
   scrollTl.to('.bridge-layer', {
     opacity: 1,
     y: -30,
     duration: 0.1,
-    ease: 'power2.out'
+    ease: 'none'
   }, 0.9);
 }
