@@ -45,6 +45,22 @@ export function initCinematicMaster() {
       sh = img.naturalHeight; sw = img.naturalHeight * canvasRatio;
       sx = (img.naturalWidth - sw) / 2; sy = 0;
     }
+    // A literal cover crop is right for desktop, but on a tall phone it turns
+    // a 16:9 portrait into an extreme close-up. Keep a little breathing room
+    // around the source frame on compact viewports and let the scene colour
+    // occupy the remaining space.
+    if (isCompactViewport) {
+      const mobileScale = 0.78;
+      const drawW = canvasW * mobileScale;
+      const drawH = canvasH * mobileScale;
+      const offsetX = (canvasW - drawW) / 2;
+      const offsetY = (canvasH - drawH) / 2;
+      ctx.fillStyle = currentFrame.value < heroOneFrames ? '#EBEBE9' : '#0D0D0D';
+      ctx.fillRect(0, 0, canvasW, canvasH);
+      ctx.drawImage(img, sx, sy, sw, sh, offsetX, offsetY, drawW, drawH);
+      return;
+    }
+
     ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvasW, canvasH);
   }
 

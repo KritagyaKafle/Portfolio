@@ -305,6 +305,15 @@ const devSkills = [
   }
 
   @media (max-width: 480px) {
+    .canvas-vignette {
+      background: radial-gradient(circle at center, transparent 44%, color-mix(in srgb, var(--bg) 54%, transparent) 100%);
+    }
+
+    .canvas-bottom-fade {
+      inset: 78% 0 0;
+      background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg) 30%, transparent) 48%, var(--bg) 100%);
+    }
+
     .subtitle-wrapper { margin-top: 0.9rem; }
 
     .skills-layer {
