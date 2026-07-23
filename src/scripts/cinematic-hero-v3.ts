@@ -34,49 +34,27 @@ export function initCinematicMaster() {
   }, { passive: true });
   resize();
 
-  function drawCover(ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasW: number, canvasH: number) {
+  function drawFrame(ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasW: number, canvasH: number) {
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = canvasW / canvasH;
+    const sceneColor = currentFrame.value < heroOneFrames ? '#EBEBE9' : '#0D0D0D';
 
-    if (isCompactViewport) {
-      const sceneColor = currentFrame.value < heroOneFrames ? '#EBEBE9' : '#0D0D0D';
-      const transparentSceneColor = currentFrame.value < heroOneFrames ? 'rgba(235,235,233,0)' : 'rgba(13,13,13,0)';
-      const drawH = Math.min(canvasH, Math.max(canvasW / imgRatio, canvasH * 0.62));
-      const drawW = drawH * imgRatio;
-      const offsetX = (canvasW - drawW) / 2;
-      const offsetY = (canvasH - drawH) / 2;
-
-      ctx.fillStyle = sceneColor;
-      ctx.fillRect(0, 0, canvasW, canvasH);
-      ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
-
-      if (drawW > canvasW) {
-        const edgeBlend = Math.min(canvasW * 0.18, 96);
-        const leftFade = ctx.createLinearGradient(0, 0, edgeBlend, 0);
-        leftFade.addColorStop(0, sceneColor);
-        leftFade.addColorStop(1, transparentSceneColor);
-        ctx.fillStyle = leftFade;
-        ctx.fillRect(0, 0, edgeBlend, canvasH);
-
-        const rightFade = ctx.createLinearGradient(canvasW, 0, canvasW - edgeBlend, 0);
-        rightFade.addColorStop(0, sceneColor);
-        rightFade.addColorStop(1, transparentSceneColor);
-        ctx.fillStyle = rightFade;
-        ctx.fillRect(canvasW - edgeBlend, 0, edgeBlend, canvasH);
-      }
-      return;
-    }
-
-    let sw: number, sh: number, sx: number, sy: number;
+    let drawW: number;
+    let drawH: number;
     if (canvasRatio > imgRatio) {
-      sw = img.naturalWidth; sh = img.naturalWidth / canvasRatio;
-      sx = 0; sy = (img.naturalHeight - sh) / 2;
+      drawH = canvasH;
+      drawW = drawH * imgRatio;
     } else {
-      sh = img.naturalHeight; sw = img.naturalHeight * canvasRatio;
-      sx = (img.naturalWidth - sw) / 2; sy = 0;
+      drawW = canvasW;
+      drawH = drawW / imgRatio;
     }
 
-    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvasW, canvasH);
+    const offsetX = (canvasW - drawW) / 2;
+    const offsetY = (canvasH - drawH) / 2;
+
+    ctx.fillStyle = sceneColor;
+    ctx.fillRect(0, 0, canvasW, canvasH);
+    ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
   }
 
   function renderFrame() {
@@ -94,7 +72,7 @@ export function initCinematicMaster() {
     }
     if (img?.complete && img.naturalWidth > 0) {
       ctx!.clearRect(0, 0, canvas.width, canvas.height);
-      drawCover(ctx!, img, canvas.width, canvas.height);
+      drawFrame(ctx!, img, canvas.width, canvas.height);
     }
   }
 
