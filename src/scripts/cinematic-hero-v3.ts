@@ -16,7 +16,7 @@ export function initCinematicMaster() {
   const images: Array<HTMLImageElement | undefined> = [];
   const loading = new Set<number>();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isCompactViewport = window.matchMedia('(max-width: 768px)').matches;
+  const isCompactViewport = () => canvas.width <= 768;
 
   function resize() {
     // Keep the backing store proportional to the CSS box. This avoids the
@@ -34,10 +34,27 @@ export function initCinematicMaster() {
   }, { passive: true });
   resize();
 
+  function getMobileFocalX(frame: number) {
+    if (frame >= heroOneFrames) return 0.5;
+    return 0.53;
+  }
+
   function drawFrame(ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasW: number, canvasH: number) {
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = canvasW / canvasH;
     const sceneColor = currentFrame.value < heroOneFrames ? '#EBEBE9' : '#0D0D0D';
+
+    if (isCompactViewport() && canvasRatio < imgRatio) {
+      const frame = Math.max(0, Math.min(totalFrames - 1, Math.round(currentFrame.value)));
+      const sourceW = img.naturalHeight * canvasRatio;
+      const focalX = getMobileFocalX(frame) * img.naturalWidth;
+      const sx = Math.max(0, Math.min(img.naturalWidth - sourceW, focalX - sourceW / 2));
+
+      ctx.fillStyle = sceneColor;
+      ctx.fillRect(0, 0, canvasW, canvasH);
+      ctx.drawImage(img, sx, 0, sourceW, img.naturalHeight, 0, 0, canvasW, canvasH);
+      return;
+    }
 
     let drawW: number;
     let drawH: number;
@@ -152,7 +169,7 @@ export function initCinematicMaster() {
       trigger: '.cinematic-master',
       pin: true, 
       start: 'top top',
-      end: isCompactViewport ? '+=560%' : '+=700%',
+      end: isCompactViewport() ? '+=560%' : '+=700%',
       scrub: 0.5,
     }
   });
