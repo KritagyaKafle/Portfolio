@@ -37,6 +37,36 @@ export function initCinematicMaster() {
   function drawCover(ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasW: number, canvasH: number) {
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = canvasW / canvasH;
+
+    if (isCompactViewport) {
+      const sceneColor = currentFrame.value < heroOneFrames ? '#EBEBE9' : '#0D0D0D';
+      const transparentSceneColor = currentFrame.value < heroOneFrames ? 'rgba(235,235,233,0)' : 'rgba(13,13,13,0)';
+      const drawH = Math.min(canvasH, Math.max(canvasW / imgRatio, canvasH * 0.62));
+      const drawW = drawH * imgRatio;
+      const offsetX = (canvasW - drawW) / 2;
+      const offsetY = (canvasH - drawH) / 2;
+
+      ctx.fillStyle = sceneColor;
+      ctx.fillRect(0, 0, canvasW, canvasH);
+      ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
+
+      if (drawW > canvasW) {
+        const edgeBlend = Math.min(canvasW * 0.18, 96);
+        const leftFade = ctx.createLinearGradient(0, 0, edgeBlend, 0);
+        leftFade.addColorStop(0, sceneColor);
+        leftFade.addColorStop(1, transparentSceneColor);
+        ctx.fillStyle = leftFade;
+        ctx.fillRect(0, 0, edgeBlend, canvasH);
+
+        const rightFade = ctx.createLinearGradient(canvasW, 0, canvasW - edgeBlend, 0);
+        rightFade.addColorStop(0, sceneColor);
+        rightFade.addColorStop(1, transparentSceneColor);
+        ctx.fillStyle = rightFade;
+        ctx.fillRect(canvasW - edgeBlend, 0, edgeBlend, canvasH);
+      }
+      return;
+    }
+
     let sw: number, sh: number, sx: number, sy: number;
     if (canvasRatio > imgRatio) {
       sw = img.naturalWidth; sh = img.naturalWidth / canvasRatio;
@@ -44,21 +74,6 @@ export function initCinematicMaster() {
     } else {
       sh = img.naturalHeight; sw = img.naturalHeight * canvasRatio;
       sx = (img.naturalWidth - sw) / 2; sy = 0;
-    }
-    // A literal cover crop is right for desktop, but on a tall phone it turns
-    // a 16:9 portrait into an extreme close-up. Keep a little breathing room
-    // around the source frame on compact viewports and let the scene colour
-    // occupy the remaining space.
-    if (isCompactViewport) {
-      const mobileScale = 0.78;
-      const drawW = canvasW * mobileScale;
-      const drawH = canvasH * mobileScale;
-      const offsetX = (canvasW - drawW) / 2;
-      const offsetY = (canvasH - drawH) / 2;
-      ctx.fillStyle = currentFrame.value < heroOneFrames ? '#EBEBE9' : '#0D0D0D';
-      ctx.fillRect(0, 0, canvasW, canvasH);
-      ctx.drawImage(img, sx, sy, sw, sh, offsetX, offsetY, drawW, drawH);
-      return;
     }
 
     ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvasW, canvasH);
