@@ -31,5 +31,21 @@ import Footer from '../components/Footer.astro';
     z-index: 20;
     /* Clean transition, no harsh lines or shadows since canvas faded out */
     background-color: var(--bg);
+    margin-top: -1px;
+    /* A short overlap keeps the pinned hero and the first light section from
+       revealing a straight seam on fast scroll or mobile viewport changes. */
+    isolation: isolate;
+  }
+
+  .content-flow::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -8rem;
+    height: 8rem;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    z-index: 0;
   }
 </style>

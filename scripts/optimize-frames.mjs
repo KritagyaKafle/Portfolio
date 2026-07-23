@@ -2,12 +2,16 @@ import sharp from 'sharp';
 import { readdirSync, statSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
-async function deduplicateAndConvert(srcDir, destDir, targetFrames = 60) {
+async function deduplicateAndConvert(srcDir, destDir, targetFrames = 60, lastSourceFrame = Infinity) {
   mkdirSync(destDir, { recursive: true });
 
   // Step 1: List all frames sorted
   const files = readdirSync(srcDir)
-    .filter(f => f.endsWith('.jpg') || f.endsWith('.jpeg'))
+    .filter(f => {
+      if (!f.endsWith('.jpg') && !f.endsWith('.jpeg')) return false;
+      const match = f.match(/(\d+)\.(?:jpg|jpeg)$/i);
+      return match && Number(match[1]) <= lastSourceFrame;
+    })
     .sort();
 
   if (files.length === 0) {
@@ -28,16 +32,13 @@ async function deduplicateAndConvert(srcDir, destDir, targetFrames = 60) {
 
   console.log(`${srcDir}: ${files.length} total → ${unique.length} unique`);
 
-  // Step 3: Sample ~targetFrames evenly from unique frames
-  const step = Math.max(1, Math.floor(unique.length / targetFrames));
-  const selected = [];
-  for (let i = 0; i < unique.length && selected.length < targetFrames; i += step) {
-    selected.push(unique[i]);
-  }
-  // Always include last unique frame
-  if (selected[selected.length - 1] !== unique[unique.length - 1]) {
-    selected.push(unique[unique.length - 1]);
-  }
+  // Step 3: Sample exactly targetFrames evenly. Including the final source
+  // frame is safe now because Hero 1 is explicitly cut before its face-shot
+  // continuation begins.
+  const selected = Array.from({ length: Math.min(targetFrames, unique.length) }, (_, index) => {
+    const sourceIndex = Math.round(index * (unique.length - 1) / (Math.min(targetFrames, unique.length) - 1 || 1));
+    return unique[sourceIndex];
+  });
 
   console.log(`Selected ${selected.length} frames`);
 
@@ -59,8 +60,10 @@ async function deduplicateAndConvert(srcDir, destDir, targetFrames = 60) {
 
 async function main() {
   console.log('Starting Frame Optimization Pipeline...');
-  const h1Count = await deduplicateAndConvert('Hero_1', 'public/frames/hero-1', 60);
-  const h2Count = await deduplicateAndConvert('Hero_2', 'public/frames/hero-2', 60);
+  // Hero 1 becomes a different close-up shot after frame 150. Keep only the
+  // laptop scene and its dark bridge; Hero 2 owns the close-up sequence.
+  const h1Count = await deduplicateAndConvert('Hero_1', 'public/frames/hero-1', 60, 150);
+  const h2Count = await deduplicateAndConvert('Hero_2', 'public/frames/hero-2', 60, 240);
   console.log(`\nDone. Hero_1: ${h1Count} frames, Hero_2: ${h2Count} frames`);
 }
 

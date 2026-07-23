@@ -9,67 +9,107 @@ export function initCinematicMaster() {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  const totalFrames = 122; 
+  const heroOneFrames = 60;
+  const heroTwoFrames = 60;
+  const totalFrames = heroOneFrames + heroTwoFrames;
   const currentFrame = { value: 0 };
-  const images: HTMLImageElement[] = [];
+  const images: Array<HTMLImageElement | undefined> = [];
+  const loading = new Set<number>();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isCompactViewport = window.matchMedia('(max-width: 768px)').matches;
 
   function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Keep the backing store proportional to the CSS box. This avoids the
+    // expensive multi-megapixel redraws that make the sequence stutter on
+    // mobile while preserving the source aspect ratio.
+    canvas.width = Math.max(1, Math.round(window.innerWidth));
+    canvas.height = Math.max(1, Math.round(window.innerHeight));
+    ctx!.imageSmoothingEnabled = true;
     renderFrame();
   }
-  window.addEventListener('resize', () => requestAnimationFrame(resize));
+  let resizeFrame: number | undefined;
+  window.addEventListener('resize', () => {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(resize);
+  }, { passive: true });
   resize();
 
   function drawCover(ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasW: number, canvasH: number) {
-    const imgRatio = img.width / img.height;
+    const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = canvasW / canvasH;
-    let sw, sh, sx, sy;
+    let sw: number, sh: number, sx: number, sy: number;
     if (canvasRatio > imgRatio) {
-      sw = img.width; sh = img.width / canvasRatio;
-      sx = 0; sy = (img.height - sh) / 2;
+      sw = img.naturalWidth; sh = img.naturalWidth / canvasRatio;
+      sx = 0; sy = (img.naturalHeight - sh) / 2;
     } else {
-      sh = img.height; sw = img.height * canvasRatio;
-      sx = (img.width - sw) / 2; sy = 0;
+      sh = img.naturalHeight; sw = img.naturalHeight * canvasRatio;
+      sx = (img.naturalWidth - sw) / 2; sy = 0;
     }
     ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvasW, canvasH);
   }
 
   function renderFrame() {
     if (images.length === 0) return;
-    const idx = Math.round(currentFrame.value);
-    const img = images[idx];
-    if (img && img.complete) {
+    const idx = Math.max(0, Math.min(totalFrames - 1, Math.round(currentFrame.value)));
+    // Never use an arbitrary future/last frame. That made the end of the
+    // sequence appear to jump or look stretched while mobile was still
+    // downloading the requested frame.
+    let img = images[idx];
+    if (!img) {
+      for (let distance = 1; distance < totalFrames; distance++) {
+        img = images[idx - distance] || images[idx + distance];
+        if (img) break;
+      }
+    }
+    if (img?.complete && img.naturalWidth > 0) {
       ctx!.clearRect(0, 0, canvas.width, canvas.height);
       drawCover(ctx!, img, canvas.width, canvas.height);
     }
   }
 
   const getImagePath = (i: number) => {
-    if (i < 61) return `/frames/hero-1/frame-${String(i).padStart(3, '0')}.webp`;
-    else return `/frames/hero-2/frame-${String(i - 61).padStart(3, '0')}.webp`;
+    if (i < heroOneFrames) return `/frames/hero-1/frame-${String(i).padStart(3, '0')}.webp`;
+    return `/frames/hero-2/frame-${String(i - heroOneFrames).padStart(3, '0')}.webp`;
   };
 
-  async function preloadFrames() {
-    for (let i = 0; i < 20; i++) {
-      await new Promise(resolve => {
-        const img = new Image();
-        img.src = getImagePath(i);
-        img.onload = () => {
-          images[i] = img;
-          if (i === 0) renderFrame();
-          resolve(img);
-        };
-        img.onerror = () => resolve(img);
-      });
-    }
-    for (let i = 20; i < totalFrames; i++) {
-      const img = new Image();
-      img.src = getImagePath(i);
-      img.onload = () => { images[i] = img; };
-    }
+  function preloadFrame(index: number, priority: 'auto' | 'high' | 'low' = 'low') {
+    if (index < 0 || index >= totalFrames || images[index] || loading.has(index)) return;
+    loading.add(index);
+    const img = new Image();
+    img.decoding = 'async';
+    (img as HTMLImageElement & { fetchPriority?: string }).fetchPriority = priority;
+    img.src = getImagePath(index);
+    img.onload = () => {
+      images[index] = img;
+      loading.delete(index);
+      renderFrame();
+    };
+    img.onerror = () => loading.delete(index);
+  }
+
+  function preloadFrames() {
+    // Prioritise what is visible first, the dark bridge between sequences, and
+    // the final frame. The rest is loaded in small idle batches instead of
+    // opening 120 image requests at once.
+    for (let i = 0; i < 8; i++) preloadFrame(i, 'high');
+    for (let i = heroOneFrames - 4; i <= heroOneFrames + 4; i++) preloadFrame(i, 'high');
+    preloadFrame(totalFrames - 1, 'high');
+
+    const queue = Array.from({ length: totalFrames }, (_, i) => i);
+    const loadIdleBatch = (deadline?: IdleDeadline) => {
+      let loaded = 0;
+      while (queue.length && loaded < 4 && (!deadline || deadline.timeRemaining() > 4)) {
+        preloadFrame(queue.shift()!);
+        loaded++;
+      }
+      if (queue.length) {
+        return typeof window.requestIdleCallback === 'function'
+          ? window.requestIdleCallback(loadIdleBatch)
+          : globalThis.setTimeout(() => loadIdleBatch(), 80);
+      }
+    };
+    if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(loadIdleBatch);
+    else globalThis.setTimeout(() => loadIdleBatch(), 120);
   }
   preloadFrames();
 
@@ -113,7 +153,13 @@ export function initCinematicMaster() {
     value: totalFrames - 1, 
     ease: 'none',
     snap: { value: 1 },
-    onUpdate: renderFrame,
+    onUpdate: () => {
+      const frame = Math.round(currentFrame.value);
+      preloadFrame(frame, 'high');
+      preloadFrame(frame - 1);
+      preloadFrame(frame + 1);
+      renderFrame();
+    },
     duration: 0.8 
   }, 0);
 
