@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   BUILD_PATH: "."
@@ -38,6 +38,8 @@ jobs:
       - name: Build Astro
         run: npm run build
         working-directory: ${{ env.BUILD_PATH }}
+      - name: Ensure .nojekyll present
+        run: touch ${{ env.BUILD_PATH }}/dist/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
