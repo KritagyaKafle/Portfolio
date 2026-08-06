@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SwarmCursor from '../components/ui/SwarmCursor.astro';
 
 interface Props {
   title: string;
@@ -27,8 +28,20 @@ const { title, description } = Astro.props;
     <!-- Persistent texture across all scenes -->
     <div class="grain-overlay" aria-hidden="true"></div>
     
-    <main>
-      <slot />
-    </main>
+    <SwarmCursor
+      color="rgba(220, 225, 235, 0.35)"
+      accentColor="rgba(255, 255, 255, 0.5)"
+      count={8}
+      size={4}
+      speed={2.2}
+      spread={65}
+      wander={0.25}
+      trail={0.75}
+      scatterOnClick={true}
+    >
+      <main>
+        <slot />
+      </main>
+    </SwarmCursor>
   </body>
 </html>

@@ -1,0 +1,120 @@
+---
+// src/components/ui/ScrollTiltedGrid.astro
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<div class={`scroll-tilted-grid-wrapper ${className}`}>
+  <div class="scroll-tilted-grid-inner">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .scroll-tilted-grid-wrapper {
+    width: 100%;
+    perspective: 1200px;
+    perspective-origin: 50% 40%;
+    overflow: visible;
+    margin-bottom: 2.25rem;
+  }
+
+  .scroll-tilted-grid-wrapper:last-child {
+    margin-bottom: 0;
+  }
+
+  .scroll-tilted-grid-inner {
+    width: 100%;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initScrollTiltedGrid() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const wrappers = document.querySelectorAll('.scroll-tilted-grid-wrapper');
+    wrappers.forEach((wrapper, idx) => {
+      const stage = wrapper.querySelector('.scroll-tilted-grid-inner') as HTMLElement;
+      if (!stage) return;
+
+      // 1. Independent Row-by-Row 3D Scroll Tilt
+      gsap.fromTo(stage, 
+        { 
+          rotateX: 22,
+          rotateY: idx % 2 === 0 ? -6 : 6,
+          scale: 0.90,
+          z: -120,
+          opacity: 0.3,
+          transformOrigin: "center top"
+        },
+        {
+          rotateX: 0,
+          rotateY: 0,
+          scale: 1,
+          z: 0,
+          opacity: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: wrapper as HTMLElement,
+            start: "top 90%",
+            end: "top 35%",
+            scrub: 1,
+          }
+        }
+      );
+
+      // 2. Interactive 3D Mouse Parallax on Cards in this Row
+      const cards = stage.querySelectorAll('.project-card');
+      cards.forEach((card) => {
+        const cardEl = card as HTMLElement;
+
+        cardEl.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = cardEl.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = ((y - centerY) / centerY) * -8;
+          const rotateY = ((x - centerX) / centerX) * 8;
+
+          gsap.to(cardEl, {
+            rotateX: rotateX,
+            rotateY: rotateY,
+            z: 24,
+            scale: 1.02,
+            duration: 0.3,
+            ease: 'power2.out',
+            transformPerspective: 1000
+          });
+        });
+
+        cardEl.addEventListener('mouseleave', () => {
+          gsap.to(cardEl, {
+            rotateX: 0,
+            rotateY: 0,
+            z: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: 'power2.out'
+          });
+        });
+      });
+    });
+  }
+
+  // Initialize on load and Astro page transitions
+  initScrollTiltedGrid();
+  document.addEventListener('astro:page-load', initScrollTiltedGrid);
+</script>

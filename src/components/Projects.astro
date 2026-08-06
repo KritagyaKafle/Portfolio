@@ -1,27 +1,105 @@
 ---
 // src/components/Projects.astro
+import ScrollTiltedGrid from '../components/ui/ScrollTiltedGrid.astro';
+
+// Real projects from github.com/KritagyaKafle
 const projects = [
-  { title: "Project Alpha", desc: "A cinematic landing page built with Astro and GSAP.", tech: ["Astro", "GSAP"] },
-  { title: "Project Beta", desc: "E-commerce interface focused on micro-interactions.", tech: ["React", "Framer Motion"] },
-  { title: "Project Gamma", desc: "Brand identity and web experience for a local studio.", tech: ["Figma", "Next.js"] },
-  { title: "Project Delta", desc: "Interactive data visualization dashboard.", tech: ["TypeScript", "D3.js"] }
+  {
+    title: "Reel Scraper",
+    desc: "A web application to scrape and download Instagram Reels with rich metadata — captions, timestamps, and engagement metrics, all in one clean interface.",
+    tech: ["Next.js", "React", "JavaScript"],
+    github: "https://github.com/KritagyaKafle/Reel-Scraper",
+    live: "https://reel-scraper-seven.vercel.app",
+    category: "Web Utility",
+    image: "/projects/reel-scraper.png"
+  },
+  {
+    title: "Nimsdai",
+    desc: "A web-based interactive game paying tribute to legendary Nepali mountaineer Nirmal 'Nimsdai' Purja and his record-breaking expedition conquests.",
+    tech: ["JavaScript", "HTML5 Canvas", "CSS3"],
+    github: "https://github.com/KritagyaKafle/Nimsdai",
+    live: null,
+    category: "Web Game",
+    image: "/projects/nimsdai.png"
+  },
+  {
+    title: "Fearn",
+    desc: "A freelancing and earnings management web app — track projects, manage invoices, and monitor income streams with an intuitive, data-driven dashboard.",
+    tech: ["React 19", "TypeScript", "Vite", "Tailwind CSS"],
+    github: "https://github.com/KritagyaKafle/Fearn",
+    live: null,
+    category: "Finance App",
+    image: "/projects/fearn.png"
+  },
+  {
+    title: "Visit Nepal",
+    desc: "An interactive tourism portal showcasing Nepal's breathtaking landscapes, heritage sites, and adventure routes to inspire travelers worldwide.",
+    tech: ["Astro", "React", "TypeScript"],
+    github: "https://github.com/KritagyaKafle/Visit-Nepal-Website",
+    live: "https://visitingnepal.netlify.app/",
+    category: "Tourism Portal",
+    image: "/projects/visit-nepal.png"
+  },
+  {
+    title: "GoldenPress Oil Co.",
+    desc: "A product showcase website for a local mustard oil production business — featuring the brand story, product catalog, and traditional cold-press process.",
+    tech: ["Astro", "React", "JavaScript"],
+    github: "https://github.com/KritagyaKafle/Mill",
+    live: "https://thankyoumill.netlify.app/",
+    category: "Brand Website",
+    image: "/projects/goldenpress.png"
+  }
 ];
+
+// Chunk projects into pairs (rows of 2) for smooth row-by-row 3D scroll tilt
+const projectRows = [];
+for (let i = 0; i < projects.length; i += 2) {
+  projectRows.push(projects.slice(i, i + 2));
+}
 ---
 
 <section class="projects-section" id="projects">
   <div class="container">
-    <div class="projects-grid">
-      {projects.map(p => (
-        <article class="project-card">
-          <div class="project-image-placeholder"></div>
-          <div class="project-info">
-            <h3>{p.title}</h3>
-            <p>{p.desc}</p>
-            <div class="tech-stack">
-              {p.tech.map(t => <span class="tech-pill">{t}</span>)}
-            </div>
+    <div class="section-header">
+      <span class="section-label">Selected Work</span>
+      <h2>Projects</h2>
+      <p class="section-subtitle">A collection of web experiences — from utility apps and interactive games to brand showcases and tourism portals.</p>
+    </div>
+
+    <div class="projects-rows-container">
+      {projectRows.map((row) => (
+        <ScrollTiltedGrid>
+          <div class={`projects-grid ${row.length === 1 ? 'projects-grid--single' : ''}`}>
+            {row.map((p) => (
+              <article class="project-card">
+                <div class="project-visual project-visual--image">
+                  <img src={p.image} alt={`${p.title} webpage screenshot`} loading="lazy" />
+                  <span class="project-category">{p.category}</span>
+                </div>
+
+                <div class="project-info">
+                  <h3>{p.title}</h3>
+                  <p>{p.desc}</p>
+                  <div class="tech-stack">
+                    {p.tech.map(t => <span class="tech-pill">{t}</span>)}
+                  </div>
+                  <div class="project-links">
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" class="project-link" aria-label={`View ${p.title} on GitHub`}>
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                      <span>Source</span>
+                    </a>
+                    {p.live && (
+                      <a href={p.live} target="_blank" rel="noopener noreferrer" class="project-link project-link--live" aria-label={`View ${p.title} live`}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-        </article>
+        </ScrollTiltedGrid>
       ))}
     </div>
   </div>
@@ -29,7 +107,7 @@ const projects = [
 
 <style>
   .projects-section {
-    padding: clamp(3.5rem, 8vh, 6rem) clamp(1rem, 5vw, 5%) clamp(4.5rem, 10vh, 8rem);
+    padding: clamp(4rem, 10vh, 8rem) clamp(1rem, 5vw, 5%) clamp(5rem, 12vh, 10rem);
   }
 
   .container {
@@ -37,79 +115,240 @@ const projects = [
     margin: 0 auto;
   }
 
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 6vh, 5rem);
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--peacock-teal);
+    padding: 6px 16px;
+    border: 1px solid rgba(11, 130, 138, 0.25);
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+    background: rgba(11, 130, 138, 0.06);
+  }
+
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .projects-rows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  /* Project Grid */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    gap: 2.25rem;
+    transform-style: preserve-3d;
   }
 
+  /* Single item row (GoldenPress Oil Co.) centered */
+  .projects-grid--single {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* Project Card with 3D Depth */
   .project-card {
     background-color: var(--bg-elevated);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
-    transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
+    transform-style: preserve-3d;
+    transition: box-shadow var(--transition-medium), border-color var(--transition-medium);
+    will-change: transform;
   }
 
   .project-card:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 12px 32px var(--shadow-dark);
-    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 24px 54px var(--shadow-dark), 0 6px 16px var(--shadow-light);
+    border-color: rgba(11, 130, 138, 0.35);
   }
 
-  .project-image-placeholder {
+  /* Project Visual / Image Preview */
+  .project-visual {
     width: 100%;
-    aspect-ratio: 16 / 10;
-    background-color: var(--border-subtle);
+    aspect-ratio: 16 / 9;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    transform-style: preserve-3d;
   }
 
+  .project-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+
+  .project-card:hover .project-visual img {
+    transform: scale(1.06);
+  }
+
+  .project-category {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  /* Project Info */
   .project-info {
-    padding: 2rem;
+    padding: 1.75rem 2rem 2rem;
   }
 
   .project-info h3 {
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     color: var(--text);
+    letter-spacing: -0.01em;
   }
 
   .project-info p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    line-height: 1.65;
   }
 
+  /* Tech Stack */
   .tech-stack {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
   }
 
   .tech-pill {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-weight: 500;
     padding: 4px 10px;
     background-color: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 20px;
     color: var(--text-secondary);
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   }
 
+  .project-card:hover .tech-pill {
+    border-color: rgba(11, 130, 138, 0.25);
+  }
+
+  /* Project Links */
+  .project-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    transition: all var(--transition-fast);
+  }
+
+  .project-link:hover {
+    color: var(--text);
+    border-color: var(--text-secondary);
+    background: var(--card-bg);
+    transform: translateY(-1px);
+  }
+
+  .project-link--live {
+    color: var(--peacock-teal);
+    border-color: rgba(11, 130, 138, 0.3);
+    background: rgba(11, 130, 138, 0.05);
+  }
+
+  .project-link--live:hover {
+    color: #fff;
+    background: var(--peacock-teal);
+    border-color: var(--peacock-teal);
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
     .projects-grid {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
 
-    .project-info { padding: 1.35rem; }
+    .projects-grid--single {
+      max-width: 100%;
+    }
+
+    .project-info {
+      padding: 1.35rem 1.5rem 1.5rem;
+    }
+
+    .project-visual {
+      aspect-ratio: 16 / 8;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
   }
 
   @media (max-width: 480px) {
-    .project-card { border-radius: 12px; }
+    .project-card { border-radius: 14px; }
     .project-info h3 { font-size: 1.3rem; }
-    .project-info p { margin-bottom: 1.15rem; }
+    .project-info p { margin-bottom: 1rem; font-size: 0.9rem; }
+    .project-links { flex-direction: column; gap: 0.5rem; }
+    .project-link { justify-content: center; }
+    .section-label { font-size: 0.72rem; }
   }
 </style>

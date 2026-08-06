@@ -56,14 +56,15 @@ export function initCinematicMaster() {
       return;
     }
 
+    // COVER mode - fill 100% of canvas width and height with zero side borders or pillarbox gaps
     let drawW: number;
     let drawH: number;
     if (canvasRatio > imgRatio) {
-      drawH = canvasH;
-      drawW = drawH * imgRatio;
-    } else {
       drawW = canvasW;
       drawH = drawW / imgRatio;
+    } else {
+      drawH = canvasH;
+      drawW = drawH * imgRatio;
     }
 
     const offsetX = (canvasW - drawW) / 2;

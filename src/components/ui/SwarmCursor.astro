@@ -1,0 +1,250 @@
+---
+// src/components/ui/SwarmCursor.astro
+interface Props {
+  color?: string;
+  accentColor?: string;
+  count?: number;
+  size?: number;
+  speed?: number;
+  spread?: number;
+  wander?: number;
+  trail?: number;
+  scatterOnClick?: boolean;
+}
+
+const {
+  color = "rgba(220, 225, 235, 0.35)",
+  accentColor = "rgba(255, 255, 255, 0.45)",
+  count = 8,
+  size = 4,
+  speed = 2.2,
+  spread = 65,
+  wander = 0.25,
+  trail = 0.75,
+  scatterOnClick = true,
+} = Astro.props;
+---
+
+<div 
+  class="swarm-cursor-container"
+  data-color={color}
+  data-accent={accentColor}
+  data-count={count}
+  data-size={size}
+  data-speed={speed}
+  data-spread={spread}
+  data-wander={wander}
+  data-trail={trail}
+  data-scatter={scatterOnClick ? "true" : "false"}
+>
+  <canvas id="swarm-cursor-canvas"></canvas>
+  <slot />
+</div>
+
+<style>
+  .swarm-cursor-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  #swarm-cursor-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 998;
+    mix-blend-mode: opacity;
+    opacity: 0.55;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #swarm-cursor-canvas {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #swarm-cursor-canvas {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  function initSwarmCursor() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth <= 768;
+    if (prefersReduced || isMobile) return;
+
+    const container = document.querySelector('.swarm-cursor-container') as HTMLElement;
+    const canvas = document.getElementById('swarm-cursor-canvas') as HTMLCanvasElement;
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const mainColor = container.dataset.color || 'rgba(220, 225, 235, 0.35)';
+    const accentColor = container.dataset.accent || 'rgba(255, 255, 255, 0.45)';
+    const particleCount = parseInt(container.dataset.count || '8', 10);
+    const particleSize = parseFloat(container.dataset.size || '4');
+    const baseSpeed = parseFloat(container.dataset.speed || '2.2');
+    const spreadRadius = parseFloat(container.dataset.spread || '65');
+    const wanderFactor = parseFloat(container.dataset.wander || '0.25');
+    const canScatter = container.dataset.scatter === 'true';
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Target position (mouse cursor)
+    const mouse = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+      targetX: window.innerWidth / 2,
+      targetY: window.innerHeight / 2,
+      active: false
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+      mouse.active = true;
+    }, { passive: true });
+
+    // Particle with comet trail history
+    interface Point {
+      x: number;
+      y: number;
+    }
+
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      angle: number;
+      speed: number;
+      color: string;
+      targetOffsetX: number;
+      targetOffsetY: number;
+      trailHistory: Point[];
+    }
+
+    const MAX_TRAIL_LENGTH = 10;
+    const particles: Particle[] = [];
+
+    for (let i = 0; i < particleCount; i++) {
+      const angle = (Math.PI * 2 * i) / particleCount;
+      particles.push({
+        x: mouse.targetX,
+        y: mouse.targetY,
+        vx: 0,
+        vy: 0,
+        radius: particleSize * (0.7 + Math.random() * 0.5),
+        angle: angle,
+        speed: baseSpeed * (0.8 + Math.random() * 0.4),
+        color: i % 2 === 0 ? mainColor : accentColor,
+        targetOffsetX: Math.cos(angle) * (spreadRadius * (0.3 + Math.random() * 0.7)),
+        targetOffsetY: Math.sin(angle) * (spreadRadius * (0.3 + Math.random() * 0.7)),
+        trailHistory: []
+      });
+    }
+
+    // Scatter on click
+    if (canScatter) {
+      window.addEventListener('click', () => {
+        particles.forEach((p) => {
+          const angle = Math.random() * Math.PI * 2;
+          const force = 10 + Math.random() * 12;
+          p.vx = Math.cos(angle) * force;
+          p.vy = Math.sin(angle) * force;
+        });
+      });
+    }
+
+    function render() {
+      // Smooth lerp mouse position
+      mouse.x += (mouse.targetX - mouse.x) * 0.15;
+      mouse.y += (mouse.targetY - mouse.y) * 0.15;
+
+      ctx!.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (!mouse.active) {
+        requestAnimationFrame(render);
+        return;
+      }
+
+      particles.forEach((p, idx) => {
+        // Orbit / wander around mouse
+        p.angle += 0.02 * (idx % 2 === 0 ? 1 : -1);
+        const wanderX = Math.cos(p.angle * 1.5) * (spreadRadius * wanderFactor);
+        const wanderY = Math.sin(p.angle * 1.5) * (spreadRadius * wanderFactor);
+
+        const targetX = mouse.x + p.targetOffsetX + wanderX;
+        const targetY = mouse.y + p.targetOffsetY + wanderY;
+
+        // Acceleration towards target
+        const dx = targetX - p.x;
+        const dy = targetY - p.y;
+        
+        p.vx += dx * 0.035 * p.speed;
+        p.vy += dy * 0.035 * p.speed;
+
+        // Damping / friction for ultra-smooth fluid motion
+        p.vx *= 0.84;
+        p.vy *= 0.84;
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Add position to comet trail history
+        p.trailHistory.unshift({ x: p.x, y: p.y });
+        if (p.trailHistory.length > MAX_TRAIL_LENGTH) {
+          p.trailHistory.pop();
+        }
+
+        // Draw Shiny Silver Comet Trail
+        if (p.trailHistory.length > 1) {
+          ctx!.save();
+          ctx!.beginPath();
+          ctx!.moveTo(p.trailHistory[0].x, p.trailHistory[0].y);
+          for (let t = 1; t < p.trailHistory.length; t++) {
+            ctx!.lineTo(p.trailHistory[t].x, p.trailHistory[t].y);
+          }
+          ctx!.strokeStyle = p.color;
+          ctx!.lineWidth = p.radius * 0.7;
+          ctx!.lineCap = 'round';
+          ctx!.lineJoin = 'round';
+          ctx!.shadowColor = '#ffffff';
+          ctx!.shadowBlur = 4;
+          ctx!.stroke();
+          ctx!.restore();
+        }
+
+        // Draw Shiny Silver Head Dot
+        ctx!.save();
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx!.fillStyle = '#ffffff';
+        ctx!.shadowColor = '#ffffff';
+        ctx!.shadowBlur = 6;
+        ctx!.fill();
+        ctx!.restore();
+      });
+
+      requestAnimationFrame(render);
+    }
+
+    render();
+  }
+
+  initSwarmCursor();
+  document.addEventListener('astro:page-load', initSwarmCursor);
+</script>

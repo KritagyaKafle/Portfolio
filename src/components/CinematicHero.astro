@@ -17,12 +17,12 @@ const graphicsSkills = [
 ];
 
 const devSkills = [
-  { name: 'Frontend Dev', icon: 'frontend' },
+  { name: 'Full Stack', icon: 'frontend' },
   { name: 'Web Scraping', icon: 'web-scraping' },
   { name: 'Automation', icon: 'automation' },
-  { name: 'React', icon: 'react' },
+  { name: 'Agentic AI', icon: 'react' },
   { name: 'TypeScript', icon: 'typescript' },
-  { name: 'GSAP', icon: 'gsap' }
+  { name: 'Micro SaaS', icon: 'gsap' }
 ];
 ---
 
@@ -31,6 +31,7 @@ const devSkills = [
     <canvas id="master-canvas"></canvas>
     <div class="canvas-vignette"></div>
     <div class="canvas-bottom-fade" aria-hidden="true"></div>
+    <div class="hero-glow-accent" aria-hidden="true"></div>
   </div>
 
   <div class="layer title-layer">
@@ -85,7 +86,11 @@ const devSkills = [
 <style>
   .cinematic-master {
     position: relative;
-    width: 100%;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     height: 100vh;
     height: 100svh;
     background: var(--bg);
@@ -107,26 +112,48 @@ const devSkills = [
     display: block;
     width: 100%;
     height: 100%;
-    opacity: 0.8;
+    opacity: 0.82;
     mix-blend-mode: luminosity; 
     transition: opacity 0.5s ease;
   }
 
+  /* Soft multi-stop vignette - eliminates hard rectangular canvas borders */
   .canvas-vignette {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, transparent 30%, var(--bg) 95%);
+    background: radial-gradient(ellipse at center, transparent 35%, color-mix(in srgb, var(--bg) 55%, transparent) 75%, var(--bg) 100%);
     pointer-events: none;
   }
 
-  /* Dissolve the image into the following light section instead of ending
-     the pinned canvas with a visible horizontal edge. */
+  /* Multi-stage curved bottom dissolve - smooth blend into content flow */
   .canvas-bottom-fade {
     position: absolute;
-    inset: 55% 0 0;
+    inset: 35% 0 0;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg) 68%, transparent) 46%, var(--bg) 100%);
+    background: linear-gradient(
+      to bottom, 
+      transparent 0%, 
+      color-mix(in srgb, var(--bg) 20%, transparent) 30%, 
+      color-mix(in srgb, var(--bg) 65%, transparent) 65%, 
+      var(--bg) 100%
+    );
+  }
+
+  /* Subtle ambient teal light glow at bottom boundary */
+  .hero-glow-accent {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    max-width: 900px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(11, 130, 138, 0.12) 0%, rgba(11, 130, 138, 0.03) 50%, transparent 80%);
+    pointer-events: none;
+    z-index: 3;
+    filter: blur(40px);
   }
 
   .layer {
@@ -157,7 +184,7 @@ const devSkills = [
   .title-primary {
     font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 7.5rem);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1;
     color: #fff;
@@ -165,17 +192,18 @@ const devSkills = [
     display: flex;
     justify-content: center;
     white-space: nowrap;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
   .title-ghost {
     position: absolute;
     top: 4px; left: -4px;
     font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 7.5rem);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(0,0,0,0.2);
+    -webkit-text-stroke: 1px rgba(0,0,0,0.18);
     display: flex;
   }
   .subtitle-wrapper {
@@ -193,7 +221,6 @@ const devSkills = [
     letter-spacing: 0.1em;
     color: var(--text-secondary);
     line-height: 1.35;
-    /* Keeps the moving title readable when it crosses the portrait's highlights. */
     -webkit-text-stroke: 0.55px rgba(255, 255, 255, 0.9);
     paint-order: stroke fill;
     text-shadow: 0 1px 10px rgba(0, 0, 0, 0.24);
@@ -204,7 +231,7 @@ const devSkills = [
   .skills-layer {
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 10%; /* increased padding brings columns closer to center/face */
+    padding: 0 10%;
     opacity: 1;
   }
 
@@ -223,30 +250,40 @@ const devSkills = [
   .graphics-column .cards-cluster { align-items: flex-start; }
   .dev-column .cards-cluster { align-items: flex-end; }
 
-  /* PEACOCK SAMPLE STYLING */
+  /* Frosted Glassmorphic Skill Cards - Soft blended borders */
   .skill-card {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 6px 24px 6px 6px;
-    background: #ffffff;
+    padding: 7px 22px 7px 7px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
     border-radius: 40px;
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--peacock-teal); /* Use the requested teal color */
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--peacock-teal);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.04em;
     white-space: nowrap;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 
+      0 12px 32px rgba(11, 130, 138, 0.09), 
+      0 2px 8px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
     
-    /* Make them visible immediately so user sees them! */
     opacity: 0;
     transform: scale(0.8) translateY(20px);
-    
-    /* Apply curve using CSS variable. 
-       Negative pushes middle boxes outward, positive pushes them closer to the face.
-       We use -40px so it's a subtle curve that doesn't push them too far. */
     position: relative;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .skill-card:hover {
+    border-color: rgba(11, 130, 138, 0.4);
+    box-shadow: 
+      0 16px 40px rgba(11, 130, 138, 0.16), 
+      0 4px 12px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   
   .graphics-card { left: calc(var(--curve) * -30px); }
@@ -256,13 +293,14 @@ const devSkills = [
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     background: #111111;
     border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
-  .skill-card :global(svg) { width: 20px; height: 20px; fill: #ffffff; color: #ffffff; }
+  .skill-card :global(svg) { width: 18px; height: 18px; fill: #ffffff; color: #ffffff; }
 
   /* Bridge Layer */
   .bridge-layer { opacity: 0; }
@@ -286,7 +324,6 @@ const devSkills = [
       letter-spacing: 0.075em;
     }
 
-    /* Keep the two disciplines in-frame rather than stacking twelve cards vertically. */
     .skills-layer {
       flex-direction: row;
       justify-content: center;
@@ -306,12 +343,12 @@ const devSkills = [
 
   @media (max-width: 480px) {
     .canvas-vignette {
-      background: radial-gradient(circle at center, transparent 44%, color-mix(in srgb, var(--bg) 54%, transparent) 100%);
+      background: radial-gradient(ellipse at center, transparent 40%, color-mix(in srgb, var(--bg) 60%, transparent) 100%);
     }
 
     .canvas-bottom-fade {
-      inset: 78% 0 0;
-      background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg) 30%, transparent) 48%, var(--bg) 100%);
+      inset: 60% 0 0;
+      background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg) 40%, transparent) 50%, var(--bg) 100%);
     }
 
     .subtitle-wrapper { margin-top: 0.9rem; }
@@ -328,7 +365,7 @@ const devSkills = [
       padding: 4px 9px 4px 4px;
       font-size: clamp(0.58rem, 2.5vw, 0.72rem);
       letter-spacing: 0.025em;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     }
 
     .skill-card .icon {
