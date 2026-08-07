@@ -144,10 +144,10 @@ export function initCinematicMaster() {
   if (prefersReducedMotion) return;
 
   // Initial Load Text Animation - Creative 3D Pop Up
+  // Chars start visible (good for LCP), animate transform only
   gsap.fromTo('.title-primary .char', 
-    { opacity: 0, y: 50, rotateX: -90, z: -300 }, 
+    { y: 40, rotateX: -70, z: -200 }, 
     { 
-      opacity: 1, 
       y: 0, 
       rotateX: 0, 
       z: 0, 

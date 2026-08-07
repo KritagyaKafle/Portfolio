@@ -11,7 +11,7 @@ const projects = [
     github: "https://github.com/KritagyaKafle/Reel-Scraper",
     live: "https://reel-scraper-seven.vercel.app",
     category: "Web Utility",
-    image: "/projects/reel-scraper.png"
+    image: "/projects/reel-scraper.webp"
   },
   {
     title: "Nimsdai",
@@ -20,7 +20,7 @@ const projects = [
     github: "https://github.com/KritagyaKafle/Nimsdai",
     live: null,
     category: "Web Game",
-    image: "/projects/nimsdai.png"
+    image: "/projects/nimsdai.webp"
   },
   {
     title: "Fearn",
@@ -29,7 +29,7 @@ const projects = [
     github: "https://github.com/KritagyaKafle/Fearn",
     live: null,
     category: "Finance App",
-    image: "/projects/fearn.png"
+    image: "/projects/fearn.webp"
   },
   {
     title: "Visit Nepal",
@@ -38,7 +38,7 @@ const projects = [
     github: "https://github.com/KritagyaKafle/Visit-Nepal-Website",
     live: "https://visitingnepal.netlify.app/",
     category: "Tourism Portal",
-    image: "/projects/visit-nepal.png"
+    image: "/projects/visit-nepal.webp"
   },
   {
     title: "GoldenPress Oil Co.",
@@ -47,7 +47,7 @@ const projects = [
     github: "https://github.com/KritagyaKafle/Mill",
     live: "https://thankyoumill.netlify.app/",
     category: "Brand Website",
-    image: "/projects/goldenpress.png"
+    image: "/projects/goldenpress.webp"
   }
 ];
 
@@ -73,7 +73,7 @@ for (let i = 0; i < projects.length; i += 2) {
             {row.map((p) => (
               <article class="project-card">
                 <div class="project-visual project-visual--image">
-                  <img src={p.image} alt={`${p.title} webpage screenshot`} loading="lazy" />
+                  <img src={p.image} alt={`${p.title} webpage screenshot`} loading="lazy" width="1200" height="675" />
                   <span class="project-category">{p.category}</span>
                 </div>
 
