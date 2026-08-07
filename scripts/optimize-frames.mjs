@@ -1,73 +1,72 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import sharp from 'sharp';
-import { readdirSync, statSync, mkdirSync } from 'fs';
-import { join } from 'path';
 
-async function deduplicateAndConvert(srcDir, destDir, targetFrames = 60, lastSourceFrame = Infinity) {
-  mkdirSync(destDir, { recursive: true });
+const ROOT = process.cwd();
 
-  // Step 1: List all frames sorted
-  const files = readdirSync(srcDir)
-    .filter(f => {
-      if (!f.endsWith('.jpg') && !f.endsWith('.jpeg')) return false;
-      const match = f.match(/(\d+)\.(?:jpg|jpeg)$/i);
-      return match && Number(match[1]) <= lastSourceFrame;
-    })
+async function processSequence(srcDir, destDesktopDir, destMobileDir) {
+  if (!fs.existsSync(destDesktopDir)) fs.mkdirSync(destDesktopDir, { recursive: true });
+  if (!fs.existsSync(destMobileDir)) fs.mkdirSync(destMobileDir, { recursive: true });
+
+  const files = fs.readdirSync(srcDir)
+    .filter(f => f.endsWith('.jpg'))
     .sort();
 
-  if (files.length === 0) {
-    console.error(`No JPG files found in ${srcDir}`);
-    return 0;
-  }
-
-  // Step 2: Deduplicate by file size (skip consecutive identical sizes)
-  const unique = [];
+  // Deduplicate consecutive identical-size files
+  const uniqueFiles = [];
   let prevSize = -1;
-  for (const f of files) {
-    const size = statSync(join(srcDir, f)).size;
+  for (const file of files) {
+    const filePath = path.join(srcDir, file);
+    const size = fs.statSync(filePath).size;
     if (size !== prevSize) {
-      unique.push(f);
+      uniqueFiles.push(filePath);
+      prevSize = size;
     }
-    prevSize = size;
   }
 
-  console.log(`${srcDir}: ${files.length} total → ${unique.length} unique`);
-
-  // Step 3: Sample exactly targetFrames evenly. Including the final source
-  // frame is safe now because Hero 1 is explicitly cut before its face-shot
-  // continuation begins.
-  const selected = Array.from({ length: Math.min(targetFrames, unique.length) }, (_, index) => {
-    const sourceIndex = Math.round(index * (unique.length - 1) / (Math.min(targetFrames, unique.length) - 1 || 1));
-    return unique[sourceIndex];
-  });
-
-  console.log(`Selected ${selected.length} frames`);
-
-  // Step 4: Convert to WebP
-  let i = 0;
-  for (const selectedFile of selected) {
-    const inputPath = join(srcDir, selectedFile);
-    const outputPath = join(destDir, `frame-${String(i).padStart(3, '0')}.webp`);
-    await sharp(inputPath)
-      .resize(1920, null)
-      .webp({ quality: 80 })
-      .toFile(outputPath);
-    i++;
+  // Sample exactly 60 frames evenly
+  const targetCount = 60;
+  const sampled = [];
+  for (let i = 0; i < targetCount; i++) {
+    const idx = Math.floor((i / (targetCount - 1)) * (uniqueFiles.length - 1));
+    sampled.push(uniqueFiles[idx]);
   }
 
-  console.log(`✓ ${destDir}: ${selected.length} WebP frames written`);
-  return selected.length;
+  console.log(`Processing ${srcDir}: ${files.length} total -> ${uniqueFiles.length} unique -> ${sampled.length} sampled`);
+
+  for (let i = 0; i < sampled.length; i++) {
+    const input = sampled[i];
+    const frameName = `frame-${String(i).padStart(3, '0')}.webp`;
+    const outDesktop = path.join(destDesktopDir, frameName);
+    const outMobile = path.join(destMobileDir, frameName);
+
+    // Desktop: 1920x1080 WebP q72
+    await sharp(input)
+      .resize(1920, 1080, { fit: 'cover' })
+      .webp({ quality: 72, effort: 6 })
+      .toFile(outDesktop);
+
+    // Mobile: 720x405 WebP q68
+    await sharp(input)
+      .resize(720, 405, { fit: 'cover' })
+      .webp({ quality: 68, effort: 6 })
+      .toFile(outMobile);
+  }
 }
 
 async function main() {
-  console.log('Starting Frame Optimization Pipeline...');
-  // Hero 1 becomes a different close-up shot after frame 150. Keep only the
-  // laptop scene and its dark bridge; Hero 2 owns the close-up sequence.
-  const h1Count = await deduplicateAndConvert('Hero_1', 'public/frames/hero-1', 60, 150);
-  const h2Count = await deduplicateAndConvert('Hero_2', 'public/frames/hero-2', 60, 240);
-  console.log(`\nDone. Hero_1: ${h1Count} frames, Hero_2: ${h2Count} frames`);
+  console.log('Starting frame optimization...');
+  await processSequence(
+    path.join(ROOT, 'Hero_1'),
+    path.join(ROOT, 'public/frames/hero-1'),
+    path.join(ROOT, 'public/frames/hero-1-mobile')
+  );
+  await processSequence(
+    path.join(ROOT, 'Hero_2'),
+    path.join(ROOT, 'public/frames/hero-2'),
+    path.join(ROOT, 'public/frames/hero-2-mobile')
+  );
+  console.log('Frame optimization complete!');
 }
 
-main().catch(err => {
-  console.error("Frame optimization failed:", err);
-  process.exit(1);
-});
+main().catch(console.error);

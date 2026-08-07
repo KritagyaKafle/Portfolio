@@ -1,6 +1,6 @@
 ---
 // src/components/About.astro
-import ProfileCard from '../components/ui/ProfileCard.astro';
+import ProfileCard from '../components/ui/ProfileCard.jsx';
 ---
 
 <section class="about-section" id="about">
@@ -18,8 +18,10 @@ import ProfileCard from '../components/ui/ProfileCard.astro';
       
       <div class="about-image-wrapper">
         <ProfileCard
+          client:load
           name="Kritagya Kafle"
           title="Student"
+          handle="kritagyakafle"
           status="Online"
           contactText="Contact Me"
           avatarUrl="/me.webp"
@@ -27,9 +29,8 @@ import ProfileCard from '../components/ui/ProfileCard.astro';
           enableTilt={true}
           enableMobileTilt={false}
           behindGlowEnabled={true}
-          behindGlowColor="rgba(11, 130, 138, 0.55)"
-          innerGradient="linear-gradient(145deg, rgba(11, 130, 138, 0.22) 0%, rgba(122, 91, 160, 0.15) 100%)"
-          blurAvatar={true}
+          behindGlowColor="rgba(11, 130, 138, 0.67)"
+          innerGradient="linear-gradient(145deg, rgba(11, 130, 138, 0.35) 0%, rgba(122, 91, 160, 0.2) 100%)"
         />
       </div>
     </div>
@@ -45,21 +46,6 @@ import ProfileCard from '../components/ui/ProfileCard.astro';
   .container {
     max-width: 1200px;
     margin: 0 auto;
-  }
-
-  .section-label {
-    display: inline-block;
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--peacock-teal);
-    padding: 6px 16px;
-    border: 1px solid rgba(11, 130, 138, 0.25);
-    border-radius: 20px;
-    margin-bottom: 1.25rem;
-    background: rgba(11, 130, 138, 0.06);
   }
 
   .about-content {

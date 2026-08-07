@@ -16,47 +16,39 @@ export function initCinematicMaster() {
   const images: Array<HTMLImageElement | undefined> = [];
   const loading = new Set<number>();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isCompactViewport = () => canvas.width <= 768;
+  const isMobile = window.innerWidth <= 768;
+  const isCompactViewport = () => window.innerWidth <= 768;
+
+  let lastWidth = window.innerWidth;
+  let lastHeight = window.innerHeight;
 
   function resize() {
-    // Keep the backing store proportional to the CSS box. This avoids the
-    // expensive multi-megapixel redraws that make the sequence stutter on
-    // mobile while preserving the source aspect ratio.
     canvas.width = Math.max(1, Math.round(window.innerWidth));
     canvas.height = Math.max(1, Math.round(window.innerHeight));
     ctx!.imageSmoothingEnabled = true;
     renderFrame();
   }
+
   let resizeFrame: number | undefined;
   window.addEventListener('resize', () => {
+    // Avoid redrawing/flashing on mobile when address bar hides/shows (only height changes slightly)
+    const newWidth = window.innerWidth;
+    const newHeight = window.innerHeight;
+    if (newWidth === lastWidth && Math.abs(newHeight - lastHeight) < 120) return;
+    lastWidth = newWidth;
+    lastHeight = newHeight;
+
     if (resizeFrame) cancelAnimationFrame(resizeFrame);
     resizeFrame = requestAnimationFrame(resize);
   }, { passive: true });
   resize();
-
-  function getMobileFocalX(frame: number) {
-    if (frame >= heroOneFrames) return 0.5;
-    return 0.53;
-  }
 
   function drawFrame(ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasW: number, canvasH: number) {
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = canvasW / canvasH;
     const sceneColor = currentFrame.value < heroOneFrames ? '#EBEBE9' : '#0D0D0D';
 
-    if (isCompactViewport() && canvasRatio < imgRatio) {
-      const frame = Math.max(0, Math.min(totalFrames - 1, Math.round(currentFrame.value)));
-      const sourceW = img.naturalHeight * canvasRatio;
-      const focalX = getMobileFocalX(frame) * img.naturalWidth;
-      const sx = Math.max(0, Math.min(img.naturalWidth - sourceW, focalX - sourceW / 2));
-
-      ctx.fillStyle = sceneColor;
-      ctx.fillRect(0, 0, canvasW, canvasH);
-      ctx.drawImage(img, sx, 0, sourceW, img.naturalHeight, 0, 0, canvasW, canvasH);
-      return;
-    }
-
-    // COVER mode - fill 100% of canvas width and height with zero side borders or pillarbox gaps
+    // Cover mode - fill 100% of canvas
     let drawW: number;
     let drawH: number;
     if (canvasRatio > imgRatio) {
@@ -78,9 +70,6 @@ export function initCinematicMaster() {
   function renderFrame() {
     if (images.length === 0) return;
     const idx = Math.max(0, Math.min(totalFrames - 1, Math.round(currentFrame.value)));
-    // Never use an arbitrary future/last frame. That made the end of the
-    // sequence appear to jump or look stretched while mobile was still
-    // downloading the requested frame.
     let img = images[idx];
     if (!img) {
       for (let distance = 1; distance < totalFrames; distance++) {
@@ -95,8 +84,9 @@ export function initCinematicMaster() {
   }
 
   const getImagePath = (i: number) => {
-    if (i < heroOneFrames) return `/frames/hero-1/frame-${String(i).padStart(3, '0')}.webp`;
-    return `/frames/hero-2/frame-${String(i - heroOneFrames).padStart(3, '0')}.webp`;
+    const mobilePrefix = isMobile ? '-mobile' : '';
+    if (i < heroOneFrames) return `/frames/hero-1${mobilePrefix}/frame-${String(i).padStart(3, '0')}.webp`;
+    return `/frames/hero-2${mobilePrefix}/frame-${String(i - heroOneFrames).padStart(3, '0')}.webp`;
   };
 
   function preloadFrame(index: number, priority: 'auto' | 'high' | 'low' = 'low') {

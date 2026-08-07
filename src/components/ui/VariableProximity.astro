@@ -83,14 +83,16 @@ const characters = label.split('');
         targetY: 0,
       }));
 
+      let rectsValid = false;
+
       function updateRects() {
         charMeta.forEach((m) => {
           m.rect = m.el.getBoundingClientRect();
         });
+        rectsValid = true;
       }
 
-      window.addEventListener('resize', updateRects, { passive: true });
-      window.addEventListener('scroll', updateRects, { passive: true });
+      window.addEventListener('resize', () => { rectsValid = false; }, { passive: true });
 
       let mouseX = -9999;
       let mouseY = -9999;
@@ -98,6 +100,7 @@ const characters = label.split('');
       let rAF: number | null = null;
 
       function onMouseMove(e: MouseEvent) {
+        if (!rectsValid) updateRects();
         mouseX = e.clientX;
         mouseY = e.clientY;
         isHovering = true;
