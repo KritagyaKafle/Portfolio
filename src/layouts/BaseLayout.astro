@@ -21,11 +21,12 @@ const { title, description } = Astro.props;
     <link rel="preload" as="image" href="/frames/hero-1-mobile/frame-000.webp" media="(max-width: 768px)" fetchpriority="high" />
     <link rel="preload" as="image" href="/frames/hero-1/frame-000.webp" media="(min-width: 769px)" fetchpriority="high" />
 
-    <!-- Google Fonts - Non-blocking load with display=swap -->
+    <!-- Google Fonts - Non-blocking optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
     
     <title>{title}</title>
   </head>

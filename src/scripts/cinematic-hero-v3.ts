@@ -105,28 +105,44 @@ export function initCinematicMaster() {
   }
 
   function preloadFrames() {
-    // Prioritise what is visible first, the dark bridge between sequences, and
-    // the final frame. The rest is loaded in small idle batches instead of
-    // opening 120 image requests at once.
-    for (let i = 0; i < 8; i++) preloadFrame(i, 'high');
-    for (let i = heroOneFrames - 4; i <= heroOneFrames + 4; i++) preloadFrame(i, 'high');
-    preloadFrame(totalFrames - 1, 'high');
+    // Load initial 3 frames immediately for fast LCP
+    preloadFrame(0, 'high');
+    preloadFrame(1, 'high');
+    preloadFrame(2, 'high');
 
-    const queue = Array.from({ length: totalFrames }, (_, i) => i);
-    const loadIdleBatch = (deadline?: IdleDeadline) => {
-      let loaded = 0;
-      while (queue.length && loaded < 4 && (!deadline || deadline.timeRemaining() > 4)) {
-        preloadFrame(queue.shift()!);
-        loaded++;
-      }
-      if (queue.length) {
-        return typeof window.requestIdleCallback === 'function'
-          ? window.requestIdleCallback(loadIdleBatch)
-          : globalThis.setTimeout(() => loadIdleBatch(), 80);
+    const startFullQueue = () => {
+      const queue = Array.from({ length: totalFrames }, (_, i) => i).filter(i => i > 2);
+      const batchSize = isMobile ? 2 : 4;
+      const delayMs = isMobile ? 150 : 80;
+
+      const loadBatch = (deadline?: IdleDeadline) => {
+        let loaded = 0;
+        while (queue.length && loaded < batchSize && (!deadline || deadline.timeRemaining() > 3)) {
+          preloadFrame(queue.shift()!, 'low');
+          loaded++;
+        }
+        if (queue.length) {
+          return typeof window.requestIdleCallback === 'function'
+            ? window.requestIdleCallback(loadBatch, { timeout: 1000 })
+            : globalThis.setTimeout(() => loadBatch(), delayMs);
+        }
+      };
+
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(loadBatch, { timeout: 1000 });
+      } else {
+        globalThis.setTimeout(() => loadBatch(), delayMs);
       }
     };
-    if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(loadIdleBatch);
-    else globalThis.setTimeout(() => loadIdleBatch(), 120);
+
+    // Defer heavy frame queue until after window load / first user scroll to prioritize FCP and LCP
+    if (document.readyState === 'complete') {
+      globalThis.setTimeout(startFullQueue, 200);
+    } else {
+      window.addEventListener('load', () => globalThis.setTimeout(startFullQueue, 200), { once: true });
+      window.addEventListener('touchstart', startFullQueue, { once: true, passive: true });
+      window.addEventListener('scroll', startFullQueue, { once: true, passive: true });
+    }
   }
   preloadFrames();
 

@@ -1,3 +1,15 @@
+@property --bgrotate {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --holo-shift {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
 :root {
   --pointer-x: 50%;
   --pointer-y: 50%;
@@ -449,16 +461,24 @@
 
 @keyframes holo-bg {
   0% {
+    --holo-shift: 0%;
+    transform: translate3d(0, 0, 1px) scale(1);
     background-position:
       0 var(--background-y),
-      0 0,
+      var(--holo-shift) var(--holo-shift),
       center;
   }
 
+  50% {
+    transform: translate3d(0, 0, 1px) scale(1.01);
+  }
+
   100% {
+    --holo-shift: 90%;
+    transform: translate3d(0, 0, 1px) scale(1);
     background-position:
       0 var(--background-y),
-      90% 90%,
+      var(--holo-shift) var(--holo-shift),
       center;
   }
 }
