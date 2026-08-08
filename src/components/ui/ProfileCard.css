@@ -78,6 +78,7 @@
   backface-visibility: hidden;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.15);
+  will-change: transform;
 }
 
 .pc-card:hover,
@@ -121,6 +122,8 @@
   animation: holo-bg 18s linear infinite;
   animation-play-state: running;
   mix-blend-mode: color-dodge;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 1px);
 }
 
 .pc-shine,

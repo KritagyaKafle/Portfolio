@@ -73,7 +73,7 @@ for (let i = 0; i < projects.length; i += 2) {
             {row.map((p) => (
               <article class="project-card">
                 <div class="project-visual project-visual--image">
-                  <img src={p.image} alt={`${p.title} webpage screenshot`} loading="lazy" width="1200" height="675" />
+                  <img src={p.image} alt={`${p.title} webpage screenshot`} loading="lazy" decoding="async" width="1200" height="675" />
                   <span class="project-category">{p.category}</span>
                 </div>
 
@@ -332,6 +332,25 @@ for (let i = 0; i < projects.length; i += 2) {
 
     .project-info {
       padding: 1.35rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .project-info h3 {
+      text-align: center;
+    }
+
+    .project-info p {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tech-stack {
+      justify-content: center;
+    }
+
+    .project-links {
+      justify-content: center;
     }
 
     .project-visual {
@@ -340,15 +359,17 @@ for (let i = 0; i < projects.length; i += 2) {
 
     .section-header {
       margin-bottom: 2.5rem;
+      text-align: center;
     }
   }
 
   @media (max-width: 480px) {
     .project-card { border-radius: 14px; }
-    .project-info h3 { font-size: 1.3rem; }
-    .project-info p { margin-bottom: 1rem; font-size: 0.9rem; }
-    .project-links { flex-direction: column; gap: 0.5rem; }
-    .project-link { justify-content: center; }
+    .project-info h3 { font-size: 1.3rem; text-align: center; }
+    .project-info p { margin-bottom: 1rem; font-size: 0.9rem; text-align: center; }
+    .project-links { flex-direction: column; gap: 0.5rem; width: 100%; }
+    .project-link { justify-content: center; width: 100%; box-sizing: border-box; }
     .section-label { font-size: 0.72rem; }
+    .tech-stack { justify-content: center; }
   }
 </style>

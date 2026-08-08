@@ -316,6 +316,8 @@ const devSkills = [
     .title-primary,
     .title-ghost {
       font-size: clamp(1.75rem, 8.5vw, 4.25rem);
+      text-align: center;
+      justify-content: center;
     }
 
     .title-ghost { top: 3px; left: -3px; }
@@ -323,34 +325,36 @@ const devSkills = [
     .title-subtitle {
       font-size: clamp(0.75rem, 2.8vw, 1rem);
       letter-spacing: 0.05em;
+      text-align: center;
     }
 
     .skills-layer {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       gap: 0.75rem;
       padding: 0 1rem;
-      width: 100vw;
-      max-width: 100%;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
       box-sizing: border-box;
     }
 
     .skills-column {
       width: calc(50% - 0.5rem);
-      max-width: 180px;
-      align-items: stretch;
+      max-width: 190px;
+      align-items: center;
     }
 
     .graphics-column, .dev-column {
-      align-items: stretch;
-      text-align: left;
+      align-items: center;
+      text-align: center;
     }
 
     .cards-cluster { 
       gap: 8px; 
       width: 100%;
-      align-items: stretch !important; 
+      align-items: center !important; 
     }
 
     .skill-card {
@@ -361,13 +365,14 @@ const devSkills = [
       padding: 5px 10px 5px 5px;
       gap: 8px;
       font-size: 0.72rem;
-      justify-content: flex-start;
+      justify-content: center;
     }
 
     .skill-card .label {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      text-align: center;
     }
 
     .skill-card .icon {
@@ -392,15 +397,16 @@ const devSkills = [
       background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg) 40%, transparent) 50%, var(--bg) 100%);
     }
 
-    .subtitle-wrapper { margin-top: 0.9rem; }
+    .subtitle-wrapper { margin-top: 0.9rem; text-align: center; }
 
     .skills-layer {
-      gap: 0.35rem;
+      gap: 0.4rem;
       padding: 0 0.5rem;
+      max-width: 360px;
     }
 
     .skills-column {
-      max-width: 160px;
+      max-width: 165px;
     }
 
     .cards-cluster { gap: 6px; }
@@ -411,6 +417,7 @@ const devSkills = [
       font-size: 0.65rem;
       letter-spacing: 0.01em;
       border-radius: 24px;
+      justify-content: center;
     }
 
     .skill-card .icon {

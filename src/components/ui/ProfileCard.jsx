@@ -328,6 +328,9 @@ const ProfileCardComponent = ({
                 src={avatarUrl}
                 alt={`${name || 'User'} avatar`}
                 loading="lazy"
+                width={360}
+                height={480}
+                decoding="async"
                 onError={e => {
                   const t = e.target;
                   t.style.display = 'none';
@@ -341,6 +344,9 @@ const ProfileCardComponent = ({
                         src={miniAvatarUrl || avatarUrl}
                         alt={`${name || 'User'} mini avatar`}
                         loading="lazy"
+                        width={38}
+                        height={38}
+                        decoding="async"
                         onError={e => {
                           const t = e.target;
                           t.style.opacity = '0.5';

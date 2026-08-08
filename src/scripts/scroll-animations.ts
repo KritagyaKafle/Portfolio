@@ -2,22 +2,25 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ limitCallbacks: true });
 
 export function initScrollAnimations() {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return;
 
-  // Transition Bridge
-  gsap.from('.transition-bridge h2', {
-    scrollTrigger: {
-      trigger: '.transition-bridge',
-      start: 'top 80%',
-    },
-    opacity: 0,
-    y: 30,
-    duration: 1,
-    ease: 'power2.out'
-  });
+  // Transition Bridge (if present)
+  if (document.querySelector('.transition-bridge')) {
+    gsap.from('.transition-bridge h2', {
+      scrollTrigger: {
+        trigger: '.transition-bridge',
+        start: 'top 80%',
+      },
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      ease: 'power2.out'
+    });
+  }
 
   // Projects Grid Stagger
   gsap.from('.project-card', {
@@ -45,7 +48,7 @@ export function initScrollAnimations() {
     x: -30,
     duration: 1,
     ease: 'power2.out'
-  }).from('.about-image', {
+  }).from('.about-image-wrapper', {
     opacity: 0,
     x: 30,
     duration: 1,
