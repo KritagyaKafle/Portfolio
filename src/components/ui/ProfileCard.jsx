@@ -27,14 +27,14 @@ const ProfileCardComponent = ({
   enableTilt = true,
   enableMobileTilt = false,
   mobileTiltSensitivity = 5,
-  miniAvatarUrl,
+  miniAvatarUrl = '',
   name = 'Kritagya Kafle',
   title = 'Student',
   handle = 'kritagyakafle',
   status = 'Online',
   contactText = 'Contact Me',
   showUserInfo = true,
-  onContactClick
+  onContactClick = undefined
 }) => {
   const wrapRef = useRef(null);
   const shellRef = useRef(null);

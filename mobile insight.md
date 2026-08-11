@@ -1,10 +1,8 @@
 **Title:** PageSpeed Insights
 
-**Source:** [https://pagespeed.web.dev/analysis/https-kritagyakafle-com-np/4mae0prde2?form_factor=desktop](https://pagespeed.web.dev/analysis/https-kritagyakafle-com-np/4mae0prde2?form_factor=desktop)
+**Source:** [https://pagespeed.web.dev/analysis/https-kritagyakafle-com-np/p3jtc3gqxp?form_factor=mobile](https://pagespeed.web.dev/analysis/https-kritagyakafle-com-np/p3jtc3gqxp?form_factor=mobile)
 
 ---
-
-This site uses cookies from Google to deliver its services and to analyze traffic.
 
 Discover what your real users are experiencing
 
@@ -16,129 +14,27 @@ Diagnose performance issues
 
 First Contentful Paint
 
-0.7 s
+2.8 s
 
 Largest Contentful Paint
 
-1.2 s
+3.6 s
 
 Total Blocking Time
 
-130 ms
+0 ms
 
 Cumulative Layout Shift
 
-0.207
+0
 
 Speed Index
 
-1.5 s
+4.5 s
 
 Show audits relevant to:AllFCPLCPTBTCLS
 
-Render-blocking requests Est savings of 360 ms
-
-Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
-
-Show 3rd-party resources (2)
-
-| 
-URL
-
- | 
-
-Transfer Size
-
- | 
-
-Duration
-
- |
-| --- | --- | --- |
-| 
-
-kritagyakafle.com.np
-
-1st party | 
-
-6.8 KiB
-
- | 
-
-140 ms
-
- |
-| 
-
-/\_astro/index.BbuMAgVS.css
-
-(kritagyakafle.com.np)
-
- | 
-
-5.6 KiB
-
- |  |
-| 
-
-…cloudflare-static/email-decode.min.js
-
-(kritagyakafle.com.np)
-
- | 
-
-1.2 KiB
-
- | 
-
-140 ms
-
- |
-| 
-
-Google Fonts
-
-cdn[](https://fonts.google.com/ "Open in a new tab") | 
-
-3.1 KiB
-
- | 
-
-350 ms
-
- |
-| 
-
-/css2?family=…
-
-(fonts.googleapis.com)
-
- | 
-
-1.5 KiB
-
- | 
-
-200 ms
-
- |
-| 
-
-/css2?family=…
-
-(fonts.googleapis.com)
-
- | 
-
-1.6 KiB
-
- | 
-
-150 ms
-
- |
-
-Use efficient cache lifetimes Est savings of 3,664 KiB
+Use efficient cache lifetimes Est savings of 802 KiB
 
 A long cache lifetime can speed up repeat visits to your page. Learn more about caching.LCPFCPUnscored
 
@@ -161,12 +57,12 @@ kritagyakafle.com.np
 
 1st party |  | 
 
-5,389 KiB
+1,181 KiB
 
  |
 | 
 
-/me.jpeg
+/\_astro/client.bxcwkfp-.js
 
 (kritagyakafle.com.np)
 
@@ -176,12 +72,12 @@ kritagyakafle.com.np
 
  | 
 
-2,374 KiB
+58 KiB
 
  |
 | 
 
-/projects/visit-nepal.png
+/\_astro/ScrollTrigger.DDi3XPDo.js
 
 (kritagyakafle.com.np)
 
@@ -191,12 +87,12 @@ kritagyakafle.com.np
 
  | 
 
-1,473 KiB
+44 KiB
 
  |
 | 
 
-/projects/goldenpress.png
+…hero-1-mobile/frame-058.webp
 
 (kritagyakafle.com.np)
 
@@ -206,12 +102,12 @@ kritagyakafle.com.np
 
  | 
 
-191 KiB
+11 KiB
 
  |
 | 
 
-/projects/reel-scraper.png
+…hero-1-mobile/frame-059.webp
 
 (kritagyakafle.com.np)
 
@@ -221,12 +117,12 @@ kritagyakafle.com.np
 
  | 
 
-114 KiB
+11 KiB
 
  |
 | 
 
-…hero-2/frame-001.webp
+…hero-1-mobile/frame-057.webp
 
 (kritagyakafle.com.np)
 
@@ -236,12 +132,12 @@ kritagyakafle.com.np
 
  | 
 
-80 KiB
+11 KiB
 
  |
 | 
 
-…hero-2/frame-000.webp
+…hero-1-mobile/frame-056.webp
 
 (kritagyakafle.com.np)
 
@@ -251,12 +147,12 @@ kritagyakafle.com.np
 
  | 
 
-75 KiB
+11 KiB
 
  |
 | 
 
-…hero-2/frame-002.webp
+…hero-1-mobile/frame-054.webp
 
 (kritagyakafle.com.np)
 
@@ -266,12 +162,12 @@ kritagyakafle.com.np
 
  | 
 
-63 KiB
+11 KiB
 
  |
 | 
 
-…hero-2/frame-003.webp
+…hero-1-mobile/frame-055.webp
 
 (kritagyakafle.com.np)
 
@@ -281,12 +177,12 @@ kritagyakafle.com.np
 
  | 
 
-55 KiB
+11 KiB
 
  |
 | 
 
-…hero-2/frame-004.webp
+…hero-2-mobile/frame-001.webp
 
 (kritagyakafle.com.np)
 
@@ -296,12 +192,12 @@ kritagyakafle.com.np
 
  | 
 
-54 KiB
+11 KiB
 
  |
 | 
 
-…hero-2/frame-059.webp
+…hero-2-mobile/frame-019.webp
 
 (kritagyakafle.com.np)
 
@@ -311,12 +207,12 @@ kritagyakafle.com.np
 
  | 
 
-48 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-002.webp
+…hero-1-mobile/frame-053.webp
 
 (kritagyakafle.com.np)
 
@@ -326,12 +222,12 @@ kritagyakafle.com.np
 
  | 
 
-41 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-001.webp
+…hero-2-mobile/frame-020.webp
 
 (kritagyakafle.com.np)
 
@@ -341,12 +237,12 @@ kritagyakafle.com.np
 
  | 
 
-41 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-000.webp
+…hero-1-mobile/frame-051.webp
 
 (kritagyakafle.com.np)
 
@@ -356,12 +252,12 @@ kritagyakafle.com.np
 
  | 
 
-38 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-003.webp
+…hero-2-mobile/frame-021.webp
 
 (kritagyakafle.com.np)
 
@@ -371,12 +267,12 @@ kritagyakafle.com.np
 
  | 
 
-38 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-004.webp
+…hero-1-mobile/frame-049.webp
 
 (kritagyakafle.com.np)
 
@@ -386,12 +282,12 @@ kritagyakafle.com.np
 
  | 
 
-36 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-007.webp
+…hero-2-mobile/frame-000.webp
 
 (kritagyakafle.com.np)
 
@@ -401,12 +297,12 @@ kritagyakafle.com.np
 
  | 
 
-34 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-008.webp
+…hero-1-mobile/frame-052.webp
 
 (kritagyakafle.com.np)
 
@@ -416,12 +312,12 @@ kritagyakafle.com.np
 
  | 
 
-34 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-010.webp
+…hero-1-mobile/frame-050.webp
 
 (kritagyakafle.com.np)
 
@@ -431,12 +327,12 @@ kritagyakafle.com.np
 
  | 
 
-34 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-006.webp
+…hero-2-mobile/frame-022.webp
 
 (kritagyakafle.com.np)
 
@@ -446,12 +342,12 @@ kritagyakafle.com.np
 
  | 
 
-34 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-011.webp
+…hero-1-mobile/frame-048.webp
 
 (kritagyakafle.com.np)
 
@@ -461,12 +357,12 @@ kritagyakafle.com.np
 
  | 
 
-34 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-014.webp
+…hero-2-mobile/frame-018.webp
 
 (kritagyakafle.com.np)
 
@@ -476,12 +372,12 @@ kritagyakafle.com.np
 
  | 
 
-34 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-012.webp
+…hero-2-mobile/frame-002.webp
 
 (kritagyakafle.com.np)
 
@@ -491,12 +387,12 @@ kritagyakafle.com.np
 
  | 
 
-33 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-015.webp
+…hero-2-mobile/frame-023.webp
 
 (kritagyakafle.com.np)
 
@@ -506,12 +402,12 @@ kritagyakafle.com.np
 
  | 
 
-33 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-016.webp
+…hero-2-mobile/frame-024.webp
 
 (kritagyakafle.com.np)
 
@@ -521,12 +417,12 @@ kritagyakafle.com.np
 
  | 
 
-33 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-013.webp
+…hero-2-mobile/frame-017.webp
 
 (kritagyakafle.com.np)
 
@@ -536,12 +432,12 @@ kritagyakafle.com.np
 
  | 
 
-33 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-005.webp
+…hero-2-mobile/frame-008.webp
 
 (kritagyakafle.com.np)
 
@@ -551,12 +447,12 @@ kritagyakafle.com.np
 
  | 
 
-33 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-009.webp
+…hero-2-mobile/frame-010.webp
 
 (kritagyakafle.com.np)
 
@@ -566,12 +462,12 @@ kritagyakafle.com.np
 
  | 
 
-33 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-018.webp
+…hero-2-mobile/frame-013.webp
 
 (kritagyakafle.com.np)
 
@@ -581,12 +477,12 @@ kritagyakafle.com.np
 
  | 
 
-32 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-019.webp
+…hero-2-mobile/frame-027.webp
 
 (kritagyakafle.com.np)
 
@@ -596,12 +492,12 @@ kritagyakafle.com.np
 
  | 
 
-32 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-017.webp
+…hero-2-mobile/frame-012.webp
 
 (kritagyakafle.com.np)
 
@@ -611,12 +507,12 @@ kritagyakafle.com.np
 
  | 
 
-32 KiB
+11 KiB
 
  |
 | 
 
-/projects/fearn.png
+…hero-2-mobile/frame-016.webp
 
 (kritagyakafle.com.np)
 
@@ -626,12 +522,12 @@ kritagyakafle.com.np
 
  | 
 
-31 KiB
+11 KiB
 
  |
 | 
 
-/\_astro/gsap.Bi\_c5vh2.js
+…hero-2-mobile/frame-025.webp
 
 (kritagyakafle.com.np)
 
@@ -641,12 +537,12 @@ kritagyakafle.com.np
 
  | 
 
-28 KiB
+11 KiB
 
  |
 | 
 
-/projects/nimsdai.png
+…hero-2-mobile/frame-026.webp
 
 (kritagyakafle.com.np)
 
@@ -656,12 +552,12 @@ kritagyakafle.com.np
 
  | 
 
-24 KiB
+11 KiB
 
  |
 | 
 
-/\_astro/ScrollTrigger.BTGKJApg.js
+…hero-2-mobile/frame-014.webp
 
 (kritagyakafle.com.np)
 
@@ -671,12 +567,12 @@ kritagyakafle.com.np
 
  | 
 
-18 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-056.webp
+…hero-1-mobile/frame-047.webp
 
 (kritagyakafle.com.np)
 
@@ -686,12 +582,12 @@ kritagyakafle.com.np
 
  | 
 
-17 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-057.webp
+…hero-2-mobile/frame-015.webp
 
 (kritagyakafle.com.np)
 
@@ -701,12 +597,12 @@ kritagyakafle.com.np
 
  | 
 
-14 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-058.webp
+…hero-2-mobile/frame-007.webp
 
 (kritagyakafle.com.np)
 
@@ -716,12 +612,27 @@ kritagyakafle.com.np
 
  | 
 
-12 KiB
+11 KiB
 
  |
 | 
 
-…hero-1/frame-059.webp
+…hero-2-mobile/frame-009.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+11 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-011.webp
 
 (kritagyakafle.com.np)
 
@@ -736,7 +647,1087 @@ kritagyakafle.com.np
  |
 | 
 
-/\_astro/index.BbuMAgVS.css
+…hero-1-mobile/frame-046.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-003.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-029.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-005.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-031.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-041.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-004.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-006.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-034.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-030.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-045.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-032.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-028.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-033.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-035.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-036.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-037.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-042.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-039.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-040.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-038.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-043.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-044.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-046.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-045.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-047.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-048.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-049.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-050.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-051.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+10 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-052.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+9 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-054.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+9 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-053.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+9 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-057.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+9 KiB
+
+ |
+| 
+
+…hero-2-mobile/frame-059.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+9 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-044.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+9 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-043.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-007.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-009.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-008.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-011.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-019.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-006.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-001.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-010.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-020.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-002.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-021.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-012.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-016.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-024.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-005.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-004.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-000.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-003.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+8 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-015.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-025.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-013.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-023.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-017.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-022.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-018.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-027.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-014.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+/\_astro/index.D1w2-toC.css
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-029.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-026.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-031.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-030.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-028.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-042.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-032.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+7 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-033.webp
 
 (kritagyakafle.com.np)
 
@@ -751,7 +1742,112 @@ kritagyakafle.com.np
  |
 | 
 
-/\_astro/CinematicHero.astro\_ast….u83VNgXn.js
+…hero-1-mobile/frame-041.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+6 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-034.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+5 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-035.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+4 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-040.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+4 KiB
+
+ |
+| 
+
+/\_astro/react.CYuo-Lgd.js
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+4 KiB
+
+ |
+| 
+
+/\_astro/ProfileCard.BeufHvYS.js
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+4 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-036.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+4 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-039.webp
 
 (kritagyakafle.com.np)
 
@@ -766,7 +1862,37 @@ kritagyakafle.com.np
  |
 | 
 
-/\_astro/ScrollTiltedGrid.astro\_ast….CewqJp2w.js
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+3 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-037.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+4h
+
+ | 
+
+3 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-038.webp
 
 (kritagyakafle.com.np)
 
@@ -781,7 +1907,7 @@ kritagyakafle.com.np
  |
 | 
 
-/\_astro/ProfileCard.astro\_ast….9ZAXKUty.js
+/\_astro/ScrollTiltedGrid.astro\_ast….CyL38fRA.js
 
 (kritagyakafle.com.np)
 
@@ -796,7 +1922,7 @@ kritagyakafle.com.np
  |
 | 
 
-/\_astro/index.astro\_ast….Bc4cn4w2.js
+/\_astro/index.astro\_ast….C3m5Yu3W.js
 
 (kritagyakafle.com.np)
 
@@ -832,7 +1958,7 @@ kritagyakafle.com.np
 
  | 
 
-1d 23h 59m 50s
+1d 23h 59m 49s
 
  | 
 
@@ -840,97 +1966,9 @@ kritagyakafle.com.np
 
  |
 
-Layout shift culprits
-
-Layout shifts occur when elements move absent any user interaction. Investigate the causes of layout shifts, such as elements being added, removed, or their fonts changing as the page loads.CLSUnscored
-
-| 
-Element
-
- | 
-
-Layout shift score
-
- |
-| --- | --- |
-| 
-
-Total
-
- | 
-
-0.207
-
- |
-| 
-
-div.swarm-cursor-container > main > div.content-flow > ::before
-
-<::before>
-
- | 
-
-0.206
-
- |
-| 
-
-K R I T A G Y A   K A F L E
-
-<h1 class="title-primary" data-astro-cid-ljc7qogn="">
-
- | 
-
-0.001
-
- |
-| 
-
-…v15/QGYvz\_MVc….woff2
-
-(fonts.gstatic.com)
-
- | 
-
-Web font
-
- |
-| 
-
-…v20/UcC73FwrK….woff2
-
-(fonts.gstatic.com)
-
- | 
-
-Web font
-
- |
-
 Forced reflow
 
 A forced reflow occurs when JavaScript queries geometric properties (such as `offsetWidth`) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about forced reflows and possible mitigations.Unscored
-
-| 
-Top function call
-
- | 
-
-Total reflow time
-
- |
-| --- | --- |
-| 
-
-/\_astro/gsap.Bi\_c5vh2.js:2:14819
-
-(kritagyakafle.com.np)
-
- | 
-
-42 ms
-
- |
 
 | 
 Source
@@ -943,7 +1981,18 @@ Total reflow time
 | --- | --- |
 | 
 
-/\_astro/ScrollTrigger.BTGKJApg.js:1:33620
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
+
+ | 
+
+62 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:85006
 
 (kritagyakafle.com.np)
 
@@ -954,170 +2003,7 @@ Total reflow time
  |
 | 
 
-/\_astro/ScrollTrigger.BTGKJApg.js:1:15032
-
-(kritagyakafle.com.np)
-
- | 
-
-2 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:11140
-
-(kritagyakafle.com.np)
-
- | 
-
-3 ms
-
- |
-| 
-
-/\_astro/gsap.Bi\_c5vh2.js:1:53519
-
-(kritagyakafle.com.np)
-
- | 
-
-122 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:24003
-
-(kritagyakafle.com.np)
-
- | 
-
-2 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:17238
-
-(kritagyakafle.com.np)
-
- | 
-
-1 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:17381
-
-(kritagyakafle.com.np)
-
- | 
-
-1 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:11277
-
-(kritagyakafle.com.np)
-
- | 
-
-2 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:17533
-
-(kritagyakafle.com.np)
-
- | 
-
-2 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:17557
-
-(kritagyakafle.com.np)
-
- | 
-
-2 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:17568
-
-(kritagyakafle.com.np)
-
- | 
-
-1 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:1474
-
-(kritagyakafle.com.np)
-
- | 
-
-9 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:10013
-
-(kritagyakafle.com.np)
-
- | 
-
-31 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:10966
-
-(kritagyakafle.com.np)
-
- | 
-
-16 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js:1:1288
-
-(kritagyakafle.com.np)
-
- | 
-
-2 ms
-
- |
-| 
-
-https://kritagyakafle.com.np:1:27351
-
- | 
-
-0 ms
-
- |
-| 
-
-/\_astro/gsap.Bi\_c5vh2.js:1:58710
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:83952
 
 (kritagyakafle.com.np)
 
@@ -1128,7 +2014,150 @@ https://kritagyakafle.com.np:1:27351
  |
 | 
 
-/\_astro/gsap.Bi\_c5vh2.js:1:58794
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:81096
+
+(kritagyakafle.com.np)
+
+ | 
+
+1 ms
+
+ |
+| 
+
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js:1:285
+
+(kritagyakafle.com.np)
+
+ | 
+
+0 ms
+
+ |
+| 
+
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js:1:472
+
+(kritagyakafle.com.np)
+
+ | 
+
+1 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:53650
+
+(kritagyakafle.com.np)
+
+ | 
+
+40 ms
+
+ |
+| 
+
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js:1:314
+
+(kritagyakafle.com.np)
+
+ | 
+
+0 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:94004
+
+(kritagyakafle.com.np)
+
+ | 
+
+0 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:87232
+
+(kritagyakafle.com.np)
+
+ | 
+
+0 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:87375
+
+(kritagyakafle.com.np)
+
+ | 
+
+1 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:81233
+
+(kritagyakafle.com.np)
+
+ | 
+
+0 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:87528
+
+(kritagyakafle.com.np)
+
+ | 
+
+1 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:87552
+
+(kritagyakafle.com.np)
+
+ | 
+
+1 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:87564
+
+(kritagyakafle.com.np)
+
+ | 
+
+0 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:71293
+
+(kritagyakafle.com.np)
+
+ | 
+
+2 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:79963
 
 (kritagyakafle.com.np)
 
@@ -1139,7 +2168,20 @@ https://kritagyakafle.com.np:1:27351
  |
 | 
 
-\[unattributed\]
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:80922
+
+(kritagyakafle.com.np)
+
+ | 
+
+3 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:71097
+
+(kritagyakafle.com.np)
 
  | 
 
@@ -1151,31 +2193,29 @@ Network dependency tree
 
 Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
 
-Maximum critical path latency: **978 ms**
+Maximum critical path latency: **1,098 ms**
 
 Initial Navigation
 
-\- 248 ms, 7.90 KiB
+\- 188 ms, 10.11 KiB
 
-\- 769 ms, 48.09 KiB
+\- 508 ms, 7.23 KiB
 
-\- 605 ms, 5.62 KiB
+\- 585 ms, 2.53 KiB
 
-\- 766 ms, 32.27 KiB
+\- 518 ms, 1.67 KiB
 
-\- 573 ms, 2.55 KiB
+\- 835 ms, 44.17 KiB
 
-\- 978 ms, 27.64 KiB
+\- 208 ms, 1.22 KiB
 
-\- 922 ms, 18.12 KiB
+\- 806 ms, 3.59 KiB
 
-\- 575 ms, 1.67 KiB
+\- 1,098 ms, 4.16 KiB
 
-\- 594 ms, 1.56 KiB
+\- 1,080 ms, 57.64 KiB
 
-\- 279 ms, 1.22 KiB
-
-\- 595 ms, 1.46 KiB
+\- 521 ms, 1.46 KiB
 
 Preconnected origins
 
@@ -1219,218 +2259,64 @@ Add preconnect hints to your most important origins, but try to use no more than
 
 No additional origins are good candidates for preconnecting
 
-Improve image delivery Est savings of 4,072 KiB
+Render-blocking requests
 
-|  | 
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+
+| 
 URL
 
  | 
 
-Resource Size
+Transfer Size
 
  | 
 
-Est Savings
+Duration
 
  |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 
 
 kritagyakafle.com.np
 
-1st party |  | 
+1st party | 
 
-4,201.6 KiB
+8.5 KiB
 
  | 
 
-4,072.2 KiB
+630 ms
 
  |
 | 
 
-Kritagya Kafle portrait
-
- | 
-
-/me.jpeg
+/\_astro/index.D1w2-toC.css
 
 (kritagyakafle.com.np)
 
  | 
 
-2,373.1 KiB
+7.2 KiB
 
  | 
 
-2,342.0 KiB
-
- |
-|  | 
-
-Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.
-
- |  | 
-
-1,746.3 KiB
-
- |
-|  | 
-
-This image file is larger than it needs to be (1792x2149) for its displayed dimensions (378x506). Use responsive images to reduce the image download size.
-
- |  | 
-
-2,255.2 KiB
+160 ms
 
  |
 | 
 
-Visit Nepal webpage screenshot
-
- | 
-
-/projects/visit-nepal.png
+…cloudflare-static/email-decode.min.js
 
 (kritagyakafle.com.np)
 
  | 
 
-1,472.4 KiB
+1.2 KiB
 
  | 
 
-1,438.1 KiB
-
- |
-|  | 
-
-Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.
-
- |  | 
-
-1,282.9 KiB
-
- |
-|  | 
-
-This image file is larger than it needs to be (1440x808) for its displayed dimensions (580x363). Use responsive images to reduce the image download size.
-
- |  | 
-
-1,206.4 KiB
-
- |
-| 
-
-GoldenPress Oil Co. webpage screenshot
-
- | 
-
-/projects/goldenpress.png
-
-(kritagyakafle.com.np)
-
- | 
-
-189.9 KiB
-
- | 
-
-155.9 KiB
-
- |
-|  | 
-
-This image file is larger than it needs to be (1440x810) for its displayed dimensions (578x361). Use responsive images to reduce the image download size.
-
- |  | 
-
-155.9 KiB
-
- |
-| 
-
-Reel Scraper webpage screenshot
-
- | 
-
-/projects/reel-scraper.png
-
-(kritagyakafle.com.np)
-
- | 
-
-113.3 KiB
-
- | 
-
-92.8 KiB
-
- |
-|  | 
-
-This image file is larger than it needs to be (1440x808) for its displayed dimensions (580x363). Use responsive images to reduce the image download size.
-
- |  | 
-
-92.8 KiB
-
- |
-| 
-
-Fearn webpage screenshot
-
- | 
-
-/projects/fearn.png
-
-(kritagyakafle.com.np)
-
- | 
-
-30.2 KiB
-
- | 
-
-24.8 KiB
-
- |
-|  | 
-
-This image file is larger than it needs to be (1440x808) for its displayed dimensions (580x363). Use responsive images to reduce the image download size.
-
- |  | 
-
-24.8 KiB
-
- |
-| 
-
-Nimsdai webpage screenshot
-
- | 
-
-/projects/nimsdai.png
-
-(kritagyakafle.com.np)
-
- | 
-
-22.7 KiB
-
- | 
-
-18.6 KiB
-
- |
-|  | 
-
-This image file is larger than it needs to be (1440x808) for its displayed dimensions (580x363). Use responsive images to reduce the image download size.
-
- |  | 
-
-18.6 KiB
+470 ms
 
  |
 
@@ -1457,7 +2343,7 @@ Total elements
 
  |  | 
 
-321
+327
 
  |
 | 
@@ -1466,13 +2352,11 @@ DOM depth
 
  | 
 
-div.project-links > a.project-link > svg > path
-
-<path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.6…" data-astro-cid-ftq3vvlr="">
+Kritagya Kafle mini avatar
 
  | 
 
-16
+18
 
  |
 | 
@@ -1517,11 +2401,11 @@ Element render delay
 
  | 
 
-2,460 ms
+2,380 ms
 
  |
 
-G
+K
 
 <span class="char" data-astro-cid-ljc7qogn="" style="translate: none; rotate: none; scale: none;">
 
@@ -1546,7 +2430,7 @@ Google Fonts
 
 cdn[](https://fonts.google.com/ "Open in a new tab") | 
 
-83 KiB
+82 KiB
 
  | 
 
@@ -1598,27 +2482,10 @@ cdn[](https://fonts.google.com/ "Open in a new tab") |
 0 ms
 
  |
-| 
 
-/css2?family=…
+Reduce unused JavaScript Est savings of 31 KiB
 
-(fonts.googleapis.com)
-
- | 
-
-1 KiB
-
- | 
-
-0 ms
-
- |
-
-Avoid enormous network payloads Total size was 5,480 KiB
-
-Large network payloads cost users real money and are highly correlated with long load times. Learn how to reduce payload sizes.Unscored
-
-Show 3rd-party resources (1)
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
 
 | 
 URL
@@ -1627,138 +2494,154 @@ URL
 
 Transfer Size
 
+ | 
+
+Est Savings
+
  |
-| --- | --- |
+| --- | --- | --- |
 | 
 
 kritagyakafle.com.np
 
 1st party | 
 
-4,480.5 KiB
+56.4 KiB
+
+ | 
+
+30.5 KiB
 
  |
 | 
 
-/me.jpeg
+/\_astro/client.bxcwkfp-.js
 
 (kritagyakafle.com.np)
 
  | 
 
-2,374.2 KiB
-
- |
-| 
-
-/projects/visit-nepal.png
-
-(kritagyakafle.com.np)
+56.4 KiB
 
  | 
 
-1,473.4 KiB
+30.5 KiB
 
  |
+
+Minimize main-thread work 2.1 s
+
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
+
 | 
-
-/projects/goldenpress.png
-
-(kritagyakafle.com.np)
+Category
 
  | 
 
-191.0 KiB
+Time Spent
 
  |
+| --- | --- |
 | 
 
-/projects/reel-scraper.png
-
-(kritagyakafle.com.np)
+Other
 
  | 
 
-114.4 KiB
+1,026 ms
 
  |
 | 
 
-…hero-2/frame-001.webp
-
-(kritagyakafle.com.np)
+Style & Layout
 
  | 
 
-79.9 KiB
+533 ms
 
  |
 | 
 
-…hero-2/frame-000.webp
-
-(kritagyakafle.com.np)
+Script Evaluation
 
  | 
 
-75.1 KiB
+389 ms
 
  |
 | 
 
-…hero-2/frame-002.webp
-
-(kritagyakafle.com.np)
+Rendering
 
  | 
 
-63.4 KiB
+125 ms
 
  |
 | 
 
-…hero-2/frame-003.webp
-
-(kritagyakafle.com.np)
+Script Parsing & Compilation
 
  | 
 
-55.5 KiB
+27 ms
 
  |
 | 
 
-…hero-2/frame-004.webp
-
-(kritagyakafle.com.np)
+Parse HTML & CSS
 
  | 
 
-53.6 KiB
+10 ms
 
  |
+
+Avoid non-composited animations 2 animated elements found
+
 | 
-
-Google Fonts
-
-cdn[](https://fonts.google.com/ "Open in a new tab") | 
-
-48.1 KiB
-
- |
-| 
-
-…v20/UcC73FwrK….woff2
-
-(fonts.gstatic.com)
+Element
 
  | 
 
-48.1 KiB
+Name
+
+ |
+| --- | --- |
+| 
+
+div.pc-card-shell > section.pc-card > div.pc-inside > div.pc-shine
+
+<div class="pc-shine">
+
+ |  |
+| 
+
+Unsupported CSS Properties: background-position-x, background-position-y
+
+ | 
+
+holo-bg
+
+ |
+| 
+
+@kritagyakafle Online Contact Me Kritagya Kafle STUDENT
+
+<section class="pc-card">
+
+ |  |
+| 
+
+Custom CSS properties cannot be animated on the compositor: --bgrotate
+
+ | 
+
+glow-bg
 
  |
 
-Avoid long main-thread tasks 5 long tasks found
+Avoid long main-thread tasks 1 long task found
 
 | 
 URL
@@ -1779,84 +2662,30 @@ kritagyakafle.com.np
 
 1st party |  | 
 
-436 ms
+71 ms
 
  |
 | 
 
-/\_astro/CinematicHero.astro\_ast….u83VNgXn.js
+/\_astro/ScrollTrigger.DDi3XPDo.js
 
 (kritagyakafle.com.np)
 
  | 
 
-738 ms
+2,569 ms
 
  | 
 
-148 ms
-
- |
-| 
-
-/\_astro/ScrollTrigger.BTGKJApg.js
-
-(kritagyakafle.com.np)
-
- | 
-
-434 ms
-
- | 
-
-86 ms
-
- |
-| 
-
-/\_astro/CinematicHero.astro\_ast….u83VNgXn.js
-
-(kritagyakafle.com.np)
-
- | 
-
-910 ms
-
- | 
-
-84 ms
-
- |
-| 
-
-https://kritagyakafle.com.np
-
- | 
-
-222 ms
-
- | 
-
-62 ms
-
- |
-| 
-
-/\_astro/gsap.Bi\_c5vh2.js
-
-(kritagyakafle.com.np)
-
- | 
-
-639 ms
-
- | 
-
-56 ms
+71 ms
 
  |
 
 Show Hide
+
+Layout shift culprits
+
+Layout shifts occur when elements move absent any user interaction. Investigate the causes of layout shifts, such as elements being added, removed, or their fonts changing as the page loads.CLSUnscored
 
 Document request latency
 
@@ -1873,6 +2702,8 @@ Remove large, duplicate JavaScript modules from bundles to reduce unnecessary by
 Font display
 
 Consider setting `font-display` to `swap` or `optional` to ensure text is consistently visible. `swap` can be further optimized to mitigate layout shifts with font metric overrides.Unscored
+
+Improve image delivery
 
 INP breakdown
 
@@ -1907,9 +2738,149 @@ Reduce unused CSS
 
 Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.LCPFCPUnscored
 
-Reduce unused JavaScript
+Avoids enormous network payloads Total size was 1,244 KiB
 
-Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+Large network payloads cost users real money and are highly correlated with long load times. Learn how to reduce payload sizes.Unscored
+
+Show 3rd-party resources (2)
+
+| 
+URL
+
+ | 
+
+Transfer Size
+
+ |
+| --- | --- |
+| 
+
+kritagyakafle.com.np
+
+1st party | 
+
+168.6 KiB
+
+ |
+| 
+
+/\_astro/client.bxcwkfp-.js
+
+(kritagyakafle.com.np)
+
+ | 
+
+57.6 KiB
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js
+
+(kritagyakafle.com.np)
+
+ | 
+
+44.2 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-058.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+11.2 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-059.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+11.2 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-057.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+11.2 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-056.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+11.1 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-054.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+11.0 KiB
+
+ |
+| 
+
+…hero-1-mobile/frame-055.webp
+
+(kritagyakafle.com.np)
+
+ | 
+
+11.0 KiB
+
+ |
+| 
+
+Google Fonts
+
+cdn[](https://fonts.google.com/ "Open in a new tab") | 
+
+80.4 KiB
+
+ |
+| 
+
+…v20/UcC73FwrK….woff2
+
+(fonts.gstatic.com)
+
+ | 
+
+48.1 KiB
+
+ |
+| 
+
+…v15/QGYvz\_MVc….woff2
+
+(fonts.gstatic.com)
+
+ | 
+
+32.3 KiB
+
+ |
 
 User Timing marks and measures
 
@@ -1942,49 +2913,30 @@ kritagyakafle.com.np
 
 1st party | 
 
-1,711 ms
+1,861 ms
 
  | 
 
-320 ms
+332 ms
 
  | 
 
-32 ms
+25 ms
 
  |
 | 
 
-/\_astro/gsap.Bi\_c5vh2.js
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js
 
 (kritagyakafle.com.np)
 
  | 
 
-617 ms
+525 ms
 
  | 
 
-132 ms
-
- | 
-
-14 ms
-
- |
-| 
-
-/\_astro/CinematicHero.astro\_ast….u83VNgXn.js
-
-(kritagyakafle.com.np)
-
- | 
-
-581 ms
-
- | 
-
-16 ms
+30 ms
 
  | 
 
@@ -1993,21 +2945,40 @@ kritagyakafle.com.np
  |
 | 
 
-/\_astro/ScrollTrigger.BTGKJApg.js
+/\_astro/client.bxcwkfp-.js
 
 (kritagyakafle.com.np)
 
  | 
 
-269 ms
+473 ms
 
  | 
 
-165 ms
+82 ms
 
  | 
 
-16 ms
+12 ms
+
+ |
+| 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js
+
+(kritagyakafle.com.np)
+
+ | 
+
+391 ms
+
+ | 
+
+178 ms
+
+ | 
+
+10 ms
 
  |
 | 
@@ -2016,11 +2987,30 @@ https://kritagyakafle.com.np
 
  | 
 
-244 ms
+349 ms
 
  | 
 
-8 ms
+9 ms
+
+ | 
+
+2 ms
+
+ |
+| 
+
+/\_astro/ProfileCard.BeufHvYS.js
+
+(kritagyakafle.com.np)
+
+ | 
+
+123 ms
+
+ | 
+
+33 ms
 
  | 
 
@@ -2033,11 +3023,11 @@ Unattributable
 
  | 
 
-217 ms
+174 ms
 
  | 
 
-33 ms
+4 ms
 
  | 
 
@@ -2050,87 +3040,17 @@ Unattributable
 
  | 
 
-217 ms
+174 ms
 
  | 
 
-33 ms
+4 ms
 
  | 
 
 0 ms
 
  |
-
-Minimizes main-thread work 2.0 s
-
-Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
-
-| 
-Category
-
- | 
-
-Time Spent
-
- |
-| --- | --- |
-| 
-
-Other
-
- | 
-
-1,106 ms
-
- |
-| 
-
-Script Evaluation
-
- | 
-
-371 ms
-
- |
-| 
-
-Style & Layout
-
- | 
-
-355 ms
-
- |
-| 
-
-Rendering
-
- | 
-
-84 ms
-
- |
-| 
-
-Script Parsing & Compilation
-
- | 
-
-33 ms
-
- |
-| 
-
-Parse HTML & CSS
-
- | 
-
-6 ms
-
- |
-
-Avoid non-composited animations
 
 Image elements have explicit `width` and `height`
 
@@ -2507,13 +3427,44 @@ Source
 kritagyakafle.com.np
 
 1st party |  |  |
+| font-metric-overrides | 
+
+Limited Availability
+
+ | 
+
+https://kritagyakafle.com.np:-1:-2
+
+ |
+| background-clip-text | 
+
+Limited Availability
+
+ | 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
+
+ |
 | canvas-2d-alpha | 
 
 Limited Availability
 
  | 
 
-/\_astro/CinematicHero.astro\_ast….u83VNgXn.js:1:183
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js:1:151
+
+(kritagyakafle.com.np)
+
+ |
+| scrollend | 
+
+Newly Available (2025-12-12)
+
+ | 
+
+/\_astro/client.bxcwkfp-.js:8:126563
 
 (kritagyakafle.com.np)
 
@@ -2524,9 +3475,7 @@ Newly Available (2024-10-29)
 
  | 
 
-/\_astro/CinematicHero.astro\_ast….u83VNgXn.js:1:1565
-
-(kritagyakafle.com.np)
+https://kritagyakafle.com.np:-1:-2
 
  |
 | backdrop-filter | 
@@ -2535,7 +3484,9 @@ Newly Available (2024-09-16)
 
  | 
 
-https://kritagyakafle.com.np:-1:-2
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
 
  |
 | paint-order | 
@@ -2544,7 +3495,20 @@ Newly Available (2024-03-22)
 
  | 
 
-https://kritagyakafle.com.np:-1:-2
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
+
+ |
+| masks | 
+
+Widely Available (2023-12-07)
+
+ | 
+
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
 
  |
 | color-mix | 
@@ -2580,7 +3544,9 @@ Widely Available (2022-12-05)
 
  | 
 
-https://kritagyakafle.com.np:-1:-2
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
 
  |
 | individual-transforms | 
@@ -2589,7 +3555,7 @@ Widely Available (2022-08-05)
 
  | 
 
-/\_astro/gsap.Bi\_c5vh2.js:1:60434
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:60587
 
 (kritagyakafle.com.np)
 
@@ -2609,10 +3575,30 @@ Widely Available (2021-09-20)
 
  | 
 
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
+
+ |
+| not | 
+
+Widely Available (2021-01-21)
+
+ | 
+
 https://kritagyakafle.com.np:-1:-2
 
  |
 | logical-assignments | 
+
+Widely Available (2020-09-16)
+
+ | 
+
+https://kritagyakafle.com.np:1:0
+
+ |
+| nullish-coalescing | 
 
 Widely Available (2020-09-16)
 
@@ -2627,7 +3613,9 @@ Widely Available (2020-09-16)
 
  | 
 
-https://kritagyakafle.com.np:-1:-2
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js:1:1458
+
+(kritagyakafle.com.np)
 
  |
 | will-change | 
@@ -2636,7 +3624,20 @@ Widely Available (2020-01-15)
 
  | 
 
-https://kritagyakafle.com.np:-1:-2
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
+
+ |
+| aborting | 
+
+Widely Available (2019-03-25)
+
+ | 
+
+/\_astro/client.bxcwkfp-.js:8:35316
+
+(kritagyakafle.com.np)
 
  |
 | js-modules | 
@@ -2654,7 +3655,9 @@ Widely Available (2017-10-17)
 
  | 
 
-https://kritagyakafle.com.np:-1:-2
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
 
  |
 | flexbox | 
@@ -2663,7 +3666,9 @@ Widely Available (2015-09-30)
 
  | 
 
-https://kritagyakafle.com.np:-1:-2
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:103653
+
+(kritagyakafle.com.np)
 
  |
 | canvas | 
@@ -2681,7 +3686,7 @@ Widely Available (2015-07-29)
 
  | 
 
-/\_astro/gsap.Bi\_c5vh2.js:1:14973
+/\_astro/ScrollTrigger.DDi3XPDo.js:1:15002
 
 (kritagyakafle.com.np)
 
@@ -2692,7 +3697,7 @@ Widely Available (2015-07-29)
 
  | 
 
-/\_astro/CinematicHero.astro\_ast….u83VNgXn.js:1:183
+/\_astro/CinematicHero.astro\_ast….BWmhPzjE.js:1:151
 
 (kritagyakafle.com.np)
 
@@ -2792,13 +3797,13 @@ Show Hide
 
 Document has a valid `rel=canonical`
 
-Cumulative Layout Shift 0.207
-
 Show Hide
 
 Accessibility tree is well-formed All audits passed
 
 A well-formed accessibility tree helps AI agents to navigate and interact with the page.
+
+Cumulative Layout Shift 0
 
 Show Hide
 
