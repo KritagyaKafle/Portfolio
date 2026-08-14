@@ -328,8 +328,8 @@ const ProfileCardComponent = ({
                 src={avatarUrl}
                 alt={`${name || 'User'} avatar`}
                 loading="lazy"
-                width={360}
-                height={480}
+                width={800}
+                height={960}
                 decoding="async"
                 onError={e => {
                   const t = e.target;
