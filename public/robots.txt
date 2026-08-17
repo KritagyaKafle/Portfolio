@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kritagyakafle.com.np/sitemap.xml

@@ -8,6 +8,125 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const siteUrl = (Astro.site?.toString() ?? 'https://kritagyakafle.com.np').replace(/\/$/, '');
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL('/me.webp', siteUrl).toString();
+const sameAs = [
+  'https://github.com/KritagyaKafle',
+  'https://www.linkedin.com/in/kritagya-kafle-b279b6184/',
+  'https://www.upwork.com/freelancers/~01099fc86fe71a3b5e?mp_source=share'
+];
+const projects = [
+  {
+    name: 'Reel Scraper',
+    description: 'A Next.js web utility for scraping and downloading Instagram Reels with captions, timestamps, and engagement metadata.',
+    url: 'https://reel-scraper-seven.vercel.app',
+    codeRepository: 'https://github.com/KritagyaKafle/Reel-Scraper',
+    image: `${siteUrl}/projects/reel-scraper.webp`
+  },
+  {
+    name: 'Nimsdai',
+    description: 'An interactive web game inspired by Nepali mountaineer Nirmal Purja and high-altitude expedition achievements.',
+    codeRepository: 'https://github.com/KritagyaKafle/Nimsdai',
+    image: `${siteUrl}/projects/nimsdai.webp`
+  },
+  {
+    name: 'Fearn',
+    description: 'A React and TypeScript freelancing finance app for project tracking, invoice management, and earnings dashboards.',
+    codeRepository: 'https://github.com/KritagyaKafle/Fearn',
+    image: `${siteUrl}/projects/fearn.webp`
+  },
+  {
+    name: 'Visit Nepal',
+    description: 'An Astro and React tourism portal showcasing Nepal landscapes, heritage sites, and travel inspiration.',
+    url: 'https://visitingnepal.netlify.app/',
+    codeRepository: 'https://github.com/KritagyaKafle/Visit-Nepal-Website',
+    image: `${siteUrl}/projects/visit-nepal.webp`
+  },
+  {
+    name: 'GoldenPress Oil Co.',
+    description: 'A brand website for a local mustard oil business featuring product storytelling, catalog content, and cold-press process details.',
+    url: 'https://thankyoumill.netlify.app/',
+    codeRepository: 'https://github.com/KritagyaKafle/Mill',
+    image: `${siteUrl}/projects/goldenpress.webp`
+  }
+];
+const profileSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: 'Kritagya Kafle',
+      alternateName: ['Kritagya Kafle Portfolio', 'Kritagya', 'KritagyaKafle'],
+      inLanguage: 'en',
+      publisher: { '@id': `${siteUrl}/#person` }
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${siteUrl}/#profile`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      inLanguage: 'en',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      mainEntity: { '@id': `${siteUrl}/#person` }
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#person`,
+      name: 'Kritagya Kafle',
+      givenName: 'Kritagya',
+      familyName: 'Kafle',
+      additionalName: 'kritagyakafle',
+      url: siteUrl,
+      image: imageUrl,
+      email: 'mailto:kritagyakafle1k@gmail.com',
+      jobTitle: 'Graphic Designer, Video Editor & Full-Stack Developer',
+      description: 'Kritagya Kafle is a graphic designer, video editor, and full-stack developer crafting visual carousels, motion-led branding, automation tools, and interactive web applications.',
+      nationality: {
+        '@type': 'Country',
+        name: 'Nepal'
+      },
+      sameAs,
+      knowsAbout: [
+        'Graphic Design',
+        'Video Editing',
+        'Social Media Carousels',
+        'Motion Graphics & Animation',
+        'Brand Identity & Visual Strategy',
+        'Full-Stack Web Development',
+        'Frontend Architecture',
+        'React',
+        'Astro',
+        'TypeScript',
+        'JavaScript',
+        'Web Scraping & Automation',
+        'UI/UX Design'
+      ]
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${siteUrl}/#projects`,
+      name: 'Selected projects by Kritagya Kafle',
+      itemListElement: projects.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: project.name,
+          description: project.description,
+          url: project.url ?? project.codeRepository,
+          codeRepository: project.codeRepository,
+          image: project.image,
+          creator: { '@id': `${siteUrl}/#person` }
+        }
+      }))
+    }
+  ]
+};
+const profileSchemaJson = JSON.stringify(profileSchema).replace(/</g, '\\u003c');
 ---
 
 <!DOCTYPE html>
@@ -15,20 +134,48 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Kritagya Kafle" />
+    <meta name="keywords" content="Kritagya Kafle, Kritagya, Kafle, Graphic Designer, Video Editor, Carousel Designer, Motion Graphics, Full-Stack Developer, Creative Technologist, Web Developer Nepal, React, Astro, TypeScript, UI/UX" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#EBEBE9" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Kritagya Kafle" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content="Kritagya Kafle - Full-Stack Developer & Creative Technologist" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Kritagya" />
+    <meta property="profile:last_name" content="Kafle" />
+    <meta property="profile:username" content="kritagyakafle" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content="Kritagya Kafle - Full-Stack Developer & Creative Technologist" />
     
     <!-- Preload LCP initial hero frame -->
-    <link rel="preload" as="image" href="/frames/hero-1-mobile/frame-000.webp" media="(max-width: 768px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="/frames/hero-1/frame-000.webp" media="(min-width: 769px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/frames/hero-1-mobile/frame-000.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/frames/hero-1/frame-000.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
 
     <!-- Google Fonts - Non-blocking optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.removeAttribute('media')" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
     
-    <title>{title}</title>
+    <!-- Structured Data JSON-LD (Entity SEO) -->
+    <script is:inline type="application/ld+json" set:html={profileSchemaJson}></script>
   </head>
   <body>
     <!-- Persistent texture across all scenes -->

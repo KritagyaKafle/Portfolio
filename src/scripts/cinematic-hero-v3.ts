@@ -110,7 +110,10 @@ export function initCinematicMaster() {
     preloadFrame(1, 'high');
     preloadFrame(2, 'high');
 
+    let fullQueueStarted = false;
     const startFullQueue = () => {
+      if (fullQueueStarted) return;
+      fullQueueStarted = true;
       const queue = Array.from({ length: totalFrames }, (_, i) => i).filter(i => i > 2);
       const batchSize = isMobile ? 2 : 4;
       const delayMs = isMobile ? 150 : 80;
